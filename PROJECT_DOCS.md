@@ -1,8 +1,8 @@
-# The Inner Fire - Project Documentation
+# Capable Muslim - Project Documentation
 
 ## Project Overview
 
-The Inner Fire is a modern, high-performance website built with Astro, React, and TailwindCSS. It features a content-focused design with 10 main pillars covering health, mindset, social skills, fitness, and more.
+Capable Muslim is a modern, high-performance website built with Astro, React, and TailwindCSS. It features a content-focused design with 10 main pillars covering health, mindset, social skills, fitness, and more.
 
 ## Tech Stack
 
@@ -214,5 +214,5 @@ For issues or questions, refer to:
 
 ---
 
-**Built with ❤️ for The Inner Fire**
+**Built with ❤️ for Capable Muslim**
 

@@ -2,26 +2,16 @@
 import "../styles/global.css";
 import Search from "../components/Search";
 import Navigation from "../components/Navigation";
+import { siteConfig } from "../data/site";
+import { pillarsData } from "../data/pillars";
 
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = "The Inner Fire - Unleash your potential" } =
-	Astro.props;
-
-const footerPillars = [
-	{ name: "HEALTH" },
-	{ name: "MINDSET" },
-	{ name: "SOCIAL" },
-	{ name: "FITNESS" },
-	{ name: "SKILLS" },
-	{ name: "STYLE" },
-	{ name: "CULTURE" },
-	{ name: "FINANCE" },
-	{ name: "BOOKSHELF" },
-];
+const { title, description = siteConfig.defaultDescription } = Astro.props;
+const { name: siteName, logo, social } = siteConfig;
 ---
 
 <!doctype html>
@@ -30,7 +20,7 @@ const footerPillars = [
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href={logo.icon} />
 		<meta name="generator" content={Astro.generator} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,20 +30,20 @@ const footerPillars = [
 			rel="stylesheet"
 		/>
 
-		<title>{title} | The Inner Fire</title>
+		<title>{title} | {siteName}</title>
 	</head>
 	<body
-		class="selection:bg-primary-100 selection:text-primary-900 bg-[#050505]"
+		class="selection:bg-gold-500/20 selection:text-primary-100 bg-brand-950"
 	>
 		<header
-			class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/80 backdrop-blur-md border-b border-white/5"
+			class="fixed top-0 left-0 right-0 z-50 bg-brand-950/95 backdrop-blur-md border-b border-gold-500/15"
 		>
 			<div class="flex items-center h-20 px-6">
 				<a href="/" class="block group flex-shrink-0">
 					<img
-						src="/logo.png"
-						alt="The Inner Fire"
-						class="h-16 w-auto object-contain brightness-100 contrast-125"
+						src={logo.nav}
+						alt={siteName}
+						class="h-14 w-auto object-contain"
 					/>
 				</a>
 
@@ -101,14 +91,17 @@ const footerPillars = [
 
 		<div
 			id="mobile-menu"
-			class="fixed inset-0 z-40 bg-[#050505] transform translate-x-full transition-transform duration-300 pt-24 pb-10 px-6 overflow-y-auto xl:hidden flex flex-col"
+			class="fixed inset-0 z-40 bg-brand-950 transform translate-x-full transition-transform duration-300 pt-24 pb-10 px-6 overflow-y-auto xl:hidden flex flex-col"
 		>
+			<div class="mb-8 md:hidden">
+				<Search client:load variant="mobile" />
+			</div>
 			<nav class="flex flex-col space-y-6 mb-10">
 				{
-					footerPillars.map((pillar) => (
+					pillarsData.map((pillar) => (
 						<a
-							href={`/pillars/${pillar.name.toLowerCase()}`}
-							class="text-2xl font-black text-white hover:text-primary-500 uppercase tracking-tighter border-b border-white/5 pb-4"
+							href={pillar.slug === "bookshelf" ? "/bookshelf" : `/pillars/${pillar.slug}`}
+							class="text-2xl font-black text-white hover:text-gold-300 uppercase tracking-tighter border-b border-primary-400/10 pb-4"
 						>
 							{pillar.name}
 						</a>
@@ -139,7 +132,7 @@ const footerPillars = [
 		</main>
 
 		<footer
-			class="bg-[#050505] border-t border-gray-800 pt-20 pb-10 mt-20 text-gray-400"
+			class="bg-brand-950 border-t border-gold-500/15 pt-20 pb-10 mt-20 text-gray-400"
 		>
 			<div class="container mx-auto px-6">
 				<div
@@ -149,15 +142,12 @@ const footerPillars = [
 						<h4
 							class="font-extrabold text-sm uppercase tracking-wider text-white mb-4"
 						>
-							The Inner Fire
+							{siteName}
 						</h4>
 						<p
 							class="text-sm leading-relaxed text-gray-500 font-medium text-justify"
 						>
-							The Inner Fire was born from the realization that
-							modern society is designed to keep us comfortable,
-							weak, and distracted. We provide the antidote
-							through radical discipline.
+							{siteConfig.footerTagline}
 						</p>
 					</div>
 
@@ -172,53 +162,16 @@ const footerPillars = [
 						<div
 							class="grid grid-cols-3 xl:grid-cols-2 gap-x-6 gap-y-3"
 						>
-							<a
-								href="/pillars/health"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Health</a
-							>
-							<a
-								href="/pillars/mindset"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Mindset</a
-							>
-							<a
-								href="/pillars/social"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Social</a
-							>
-
-							<a
-								href="/pillars/fitness"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Fitness</a
-							>
-							<a
-								href="/pillars/skills"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Skills</a
-							>
-							<a
-								href="/pillars/style"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Style</a
-							>
-
-							<a
-								href="/pillars/culture"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Culture</a
-							>
-							<a
-								href="/pillars/finance"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Finance</a
-							>
-							<a
-								href="/bookshelf"
-								class="text-xs font-bold text-gray-500 hover:text-primary-500 uppercase tracking-wide transition-colors"
-								>Bookshelf</a
-							>
+							{
+								pillarsData.map((pillar) => (
+									<a
+										href={pillar.slug === "bookshelf" ? "/bookshelf" : `/pillars/${pillar.slug}`}
+										class="text-xs font-bold text-gray-500 hover:text-gold-300 uppercase tracking-wide transition-colors"
+									>
+										{pillar.name.charAt(0) + pillar.name.slice(1).toLowerCase()}
+									</a>
+								))
+							}
 						</div>
 					</div>
 
@@ -274,7 +227,7 @@ const footerPillars = [
 							class="grid grid-cols-2 gap-6 place-items-center xl:place-items-start"
 						>
 							<a
-								href="https://www.instagram.com/theinnerfireofficial/"
+								href={social.instagram}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -288,7 +241,7 @@ const footerPillars = [
 								>
 							</a>
 							<a
-								href="https://www.youtube.com/@TheInnerFireHQ"
+								href={social.youtube}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -302,7 +255,7 @@ const footerPillars = [
 								>
 							</a>
 							<a
-								href="https://www.tiktok.com/@theinnerfirehq"
+								href={social.tiktok}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -316,7 +269,7 @@ const footerPillars = [
 								>
 							</a>
 							<a
-								href="https://x.com/TheInnerFireHQ"
+								href={social.x}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -330,7 +283,7 @@ const footerPillars = [
 								>
 							</a>
 							<a
-								href="https://www.threads.com/@theinnerfireofficial"
+								href={social.threads}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -344,7 +297,7 @@ const footerPillars = [
 								>
 							</a>
 							<a
-								href="https://pinterest.com/theinnerfireen/"
+								href={social.pinterest}
 								target="_blank"
 								class="text-gray-500 hover:text-white transition-colors"
 							>
@@ -369,9 +322,9 @@ const footerPillars = [
 							Stay Updated
 						</h4>
 						<p class="text-xs text-gray-500 mb-4 leading-relaxed">
-							Join men who apply clear systems and build strong
-							habits weekly. No filler, no hype—just disciplined
-							execution.
+							Join Muslims who apply clear systems and build strong
+							habits weekly. No filler, no hype — just disciplined
+							execution rooted in faith.
 						</p>
 						<form class="flex flex-col space-y-3 w-full">
 							<input
@@ -394,7 +347,7 @@ const footerPillars = [
 					<p
 						class="text-sm font-extrabold uppercase tracking-[0.2em] text-white"
 					>
-						The Inner Fire
+						{siteName}
 					</p>
 					<p
 						class="text-[10px] font-extrabold uppercase tracking-widest text-gray-600"

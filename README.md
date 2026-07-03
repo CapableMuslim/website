@@ -1,6 +1,6 @@
-# The Inner Fire - Website
+# Capable Muslim - Website
 
-This is the source code for The Inner Fire website, built with [Astro](https://astro.build), React, and TailwindCSS.
+This is the source code for the Capable Muslim website, built with [Astro](https://astro.build), React, and TailwindCSS.
 
 ## Project Structure
 
@@ -8,8 +8,8 @@ This is the source code for The Inner Fire website, built with [Astro](https://a
 - `src/components`: UI components (Navigation, Footer, etc).
 - `src/layouts`: Page layouts.
 - `src/content/posts`: **Markdown content files belong here.**
-- `src/data`: Configuration data (Pillars, Menus).
-- `public`: Static assets (Images, Fonts).
+- `src/data`: Configuration data (Pillars, site config).
+- `public`: Static assets (logos, favicons).
 
 ## Getting Started
 

@@ -1,13 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../data/site";
+
+const { social, email } = siteConfig;
 ---
 
 <BaseLayout title="Contact">
-	<section class="py-20 lg:py-32 bg-[#050505]">
+	<section class="py-20 lg:py-32 bg-gold-900">
 		<div class="container mx-auto px-6 max-w-6xl">
 			<div class="text-center mb-20">
 				<h1
-					class="text-4xl lg:text-5xl font-extrabold mb-6 text-white uppercase tracking-tight"
+					class="text-4xl lg:text-5xl font-extrabold mb-6 text-primary-50 uppercase tracking-tight"
 				>
 					Get In Touch
 				</h1>
@@ -22,7 +25,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<div
 					class="bg-primary-900/10 border border-primary-900/30 rounded-xl p-8 text-center"
 				>
-					<h3 class="text-xl font-bold text-white mb-4">
+					<h3 class="text-xl font-bold text-primary-50 mb-4">
 						Before You Write
 					</h3>
 					<p class="text-gray-400 leading-relaxed">
@@ -46,12 +49,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto"
 				>
 					<a
-						href="https://www.instagram.com/theinnerfireofficial/"
+						href={social.instagram}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -60,18 +63,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>Instagram</span
 						>
 					</a>
 
 					<a
-						href="https://www.youtube.com/@TheInnerFireHQ"
+						href={social.youtube}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -80,18 +83,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>YouTube</span
 						>
 					</a>
 
 					<a
-						href="https://www.tiktok.com/@theinnerfirehq"
+						href={social.tiktok}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -100,18 +103,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>TikTok</span
 						>
 					</a>
 
 					<a
-						href="https://x.com/TheInnerFireHQ"
+						href={social.x}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -120,18 +123,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>X / Twitter</span
 						>
 					</a>
 
 					<a
-						href="https://www.threads.com/@theinnerfireofficial"
+						href={social.threads}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -140,18 +143,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>Threads</span
 						>
 					</a>
 
 					<a
-						href="https://pinterest.com/theinnerfireen/"
+						href={social.pinterest}
 						target="_blank"
-						class="group flex flex-col items-center justify-center p-8 bg-[#0a0a0a] border border-white/5 rounded-2xl hover:border-primary-500/30 hover:bg-[#0c0c0c] transition-all"
+						class="group flex flex-col items-center justify-center p-8 bg-brand-900/72 border border-brand-800/45 rounded-2xl hover:border-primary-500/30 hover:bg-brand-900/70 transition-all"
 					>
 						<svg
-							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-white transition-colors"
+							class="w-12 h-12 mb-4 text-gray-400 group-hover:text-primary-50 transition-colors"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 						>
@@ -160,7 +163,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							></path>
 						</svg>
 						<span
-							class="text-sm font-bold text-gray-400 group-hover:text-white transition-colors"
+							class="text-sm font-bold text-gray-400 group-hover:text-primary-50 transition-colors"
 							>Pinterest</span
 						>
 					</a>
@@ -169,10 +172,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 			<div class="max-w-3xl mx-auto">
 				<div
-					class="bg-[#0a0a0a] border border-white/5 rounded-2xl p-10"
+					class="bg-brand-900/72 border border-brand-800/45 rounded-2xl p-10"
 				>
 					<h2
-						class="text-2xl font-bold text-white mb-8 text-center uppercase tracking-wide"
+						class="text-2xl font-bold text-primary-50 mb-8 text-center uppercase tracking-wide"
 					>
 						Contact Form
 					</h2>
@@ -192,7 +195,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 								<input
 									type="text"
 									id="name"
-									class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors"
+									class="w-full px-4 py-3 bg-white/5 border border-brand-800/50 rounded-lg text-primary-50 focus:outline-none focus:border-primary-500 transition-colors"
 									required
 								/>
 							</div>
@@ -205,7 +208,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 								<input
 									type="email"
 									id="email"
-									class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors"
+									class="w-full px-4 py-3 bg-white/5 border border-brand-800/50 rounded-lg text-primary-50 focus:outline-none focus:border-primary-500 transition-colors"
 									required
 								/>
 							</div>
@@ -219,7 +222,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							<input
 								type="text"
 								id="subject"
-								class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors"
+								class="w-full px-4 py-3 bg-white/5 border border-brand-800/50 rounded-lg text-primary-50 focus:outline-none focus:border-primary-500 transition-colors"
 								required
 							/>
 						</div>
@@ -232,28 +235,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							<textarea
 								id="message"
 								rows="6"
-								class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary-500 transition-colors resize-none"
+								class="w-full px-4 py-3 bg-white/5 border border-brand-800/50 rounded-lg text-primary-50 focus:outline-none focus:border-primary-500 transition-colors resize-none"
 								required></textarea>
 						</div>
 						<div class="text-center">
 							<button
 								type="submit"
-								class="px-10 py-4 bg-primary-600 hover:bg-primary-500 text-white font-black uppercase tracking-widest rounded-lg transition-all hover:scale-105"
+								class="px-10 py-4 bg-primary-600 hover:bg-primary-500 text-primary-50 font-black uppercase tracking-widest rounded-lg transition-all hover:scale-105"
 							>
 								Send Message
 							</button>
 						</div>
 					</form>
 
-					<div class="mt-12 pt-8 border-t border-white/5 text-center">
+					<div class="mt-12 pt-8 border-t border-brand-800/45 text-center">
 						<p class="text-gray-500 text-sm mb-3">
 							Or email us directly at:
 						</p>
 						<a
-							href="mailto:theinnerfire.en@gmail.com"
+							href={`mailto:${email}`}
 							class="text-primary-500 hover:text-primary-400 font-bold text-lg transition-colors"
 						>
-							theinnerfire.en@gmail.com
+							{email}
 						</a>
 					</div>
 				</div>

@@ -48,10 +48,10 @@ Object.keys(postsByPillar).forEach(pillar => {
 <BaseLayout title="Home">
 	<div>
 		{latestPosts.length === 0 ? (
-			<section class="py-32 bg-[#050505]">
+			<section class="py-32 bg-gold-900">
 				<div class="container mx-auto px-6 text-center">
-					<h1 class="text-4xl lg:text-6xl font-extrabold text-white uppercase tracking-tight mb-6">
-						The Inner Fire
+					<h1 class="text-4xl lg:text-6xl font-extrabold text-primary-50 uppercase tracking-tight mb-6">
+						Capable Muslim
 					</h1>
 					<p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
 						Content is being forged. Check back soon for protocols that optimize every domain of your life.
@@ -59,11 +59,11 @@ Object.keys(postsByPillar).forEach(pillar => {
 				</div>
 			</section>
 		) : latestPosts.length >= 5 ? (
-		<section class="py-6 bg-[#050505]">
+		<section class="py-6 bg-gold-900">
 			<div class="container mx-auto px-6">
 				<div class="mb-6">
 					<h2
-						class="text-3xl lg:text-4xl font-extrabold text-white uppercase tracking-tight"
+						class="text-3xl lg:text-4xl font-extrabold text-primary-50 uppercase tracking-tight"
 					>
 						Latest Posts
 					</h2>
@@ -76,7 +76,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 							class="group block"
 						>
 							<div
-								class="relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all"
+								class="relative rounded-2xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all"
 							>
 								<div class="relative h-48 overflow-hidden">
 									<img
@@ -86,7 +86,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 									/>
 									<div class="absolute top-4 left-4">
 										<span
-											class="px-3 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-wider rounded"
+											class="px-3 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[10px] font-extrabold uppercase tracking-wider rounded"
 										>
 											{latestPosts[0].subpillar}
 										</span>
@@ -98,7 +98,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 								</div>
 								<div class="p-4">
 									<h3
-										class="text-base font-extrabold text-white mb-2 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight"
+										class="text-base font-extrabold text-primary-50 mb-2 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight"
 									>
 										{latestPosts[0].title}
 									</h3>
@@ -116,7 +116,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 							class="group block"
 						>
 							<div
-								class="relative rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all"
+								class="relative rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all"
 							>
 								<div class="relative h-32 overflow-hidden">
 									<img
@@ -126,7 +126,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 									/>
 									<div class="absolute top-3 left-3">
 										<span
-											class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded"
+											class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded"
 										>
 											{latestPosts[1].subpillar}
 										</span>
@@ -138,7 +138,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 								</div>
 								<div class="p-3">
 									<h3
-										class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight"
+										class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight"
 									>
 										{latestPosts[1].title}
 									</h3>
@@ -157,7 +157,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 									href={`/posts/${post.slug}`}
 									class="group block"
 								>
-									<div class="relative h-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+									<div class="relative h-full rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 										<div class="relative h-32 overflow-hidden">
 											<img
 												src={post.image}
@@ -165,14 +165,14 @@ Object.keys(postsByPillar).forEach(pillar => {
 												class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 											/>
 											<div class="absolute top-3 left-3">
-												<span class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded">
+												<span class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded">
 													{post.subpillar}
 												</span>
 											</div>
 											<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 										</div>
 										<div class="p-3">
-											<h3 class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+											<h3 class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 												{post.title}
 											</h3>
 											<p class="text-gray-400 text-xs leading-relaxed line-clamp-2">
@@ -206,19 +206,19 @@ Object.keys(postsByPillar).forEach(pillar => {
 				const smallPosts = displayPosts.slice(2, 5);
 
 				return (
-					<section class="py-12 lg:py-16 bg-[#080808] border-t border-white/5">
+					<section class="py-12 lg:py-16 bg-brand-900/75 border-t border-brand-800/45">
 						<div class="container mx-auto px-6">
 							<div class="mb-8">
 								<div class="flex items-center justify-between mb-6">
 									<a
 										href={`/pillars/${pillar.slug}`}
-										class="text-3xl lg:text-4xl font-extrabold text-white hover:text-primary-500 uppercase tracking-tight transition-colors"
+										class="text-3xl lg:text-4xl font-extrabold text-primary-50 hover:text-gold-300 uppercase tracking-tight transition-colors"
 									>
 										{pillar.name}
 									</a>
 									<a
 										href={`/pillars/${pillar.slug}`}
-										class="text-sm font-bold text-primary-600 hover:text-primary-500 uppercase tracking-wider transition-colors flex items-center gap-2"
+										class="text-sm font-bold text-gold-400 hover:text-gold-300 uppercase tracking-wider transition-colors flex items-center gap-2"
 									>
 										Browse All {pillar.name}
 										<svg
@@ -241,7 +241,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 									{pillar.subpillars.map((subpillar) => (
 										<a
 											href={`/pillars/${pillar.slug}/${subpillar.toLowerCase().replace(/ /g, "-")}`}
-											class="px-4 py-2 bg-white/5 hover:bg-primary-600 border border-white/10 hover:border-primary-500 rounded-lg text-xs font-bold text-gray-400 hover:text-white uppercase tracking-wider transition-all"
+											class="px-4 py-2 bg-white/5 hover:bg-gold-500 border border-brand-800/50 hover:border-gold-400 rounded-lg text-xs font-bold text-gray-400 hover:text-brand-950 uppercase tracking-wider transition-all"
 										>
 											{subpillar}
 										</a>
@@ -257,7 +257,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 												href={`/posts/${mainPost.slug}`}
 												class="group block"
 											>
-												<div class="relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+												<div class="relative rounded-2xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 													<div class="relative h-48 overflow-hidden">
 														<img
 															src={mainPost.image}
@@ -265,7 +265,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 														/>
 														<div class="absolute top-4 left-4">
-															<span class="px-3 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-wider rounded">
+															<span class="px-3 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[10px] font-extrabold uppercase tracking-wider rounded">
 																{
 																	mainPost.subpillar
 																}
@@ -274,7 +274,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 														<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 													</div>
 													<div class="p-4">
-														<h3 class="text-base font-extrabold text-white mb-2 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+														<h3 class="text-base font-extrabold text-primary-50 mb-2 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 															{mainPost.title}
 														</h3>
 														{mainPost.description && (
@@ -291,7 +291,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 													href={`/posts/${secondPost.slug}`}
 													class="group block"
 												>
-													<div class="relative rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+													<div class="relative rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 														<div class="relative h-32 overflow-hidden">
 															<img
 																src={
@@ -303,7 +303,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 																class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 															/>
 															<div class="absolute top-3 left-3">
-																<span class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded">
+																<span class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded">
 																	{
 																		secondPost.subpillar
 																	}
@@ -312,7 +312,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 														</div>
 														<div class="p-3">
-															<h3 class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+															<h3 class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 																{secondPost.title}
 															</h3>
 															{secondPost.description && (
@@ -332,7 +332,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 													href={`/posts/${post.slug}`}
 													class="group block"
 												>
-													<div class="relative h-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+													<div class="relative h-full rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 														<div class="relative h-32 overflow-hidden">
 															<img
 																src={post.image}
@@ -340,7 +340,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 																class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 															/>
 															<div class="absolute top-3 left-3">
-																<span class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded">
+																<span class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded">
 																	{
 																		post.subpillar
 																	}
@@ -349,7 +349,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 														</div>
 														<div class="p-3">
-															<h3 class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+															<h3 class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 																{post.title}
 															</h3>
 															{post.description && (
@@ -371,7 +371,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 													href={`/posts/${post.slug}`}
 													class="group block"
 												>
-													<div class="relative h-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+													<div class="relative h-full rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 														<div class="relative h-32 overflow-hidden">
 															<img
 																src={post.image}
@@ -379,7 +379,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 																class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 															/>
 															<div class="absolute top-3 left-3">
-																<span class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded">
+																<span class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded">
 																	{
 																		post.subpillar
 																	}
@@ -388,7 +388,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 														</div>
 														<div class="p-3">
-															<h3 class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+															<h3 class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 																{post.title}
 															</h3>
 															{post.description && (
@@ -407,7 +407,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 												href={`/posts/${mainPost.slug}`}
 												class="group block"
 											>
-												<div class="relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+												<div class="relative rounded-2xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 													<div class="relative h-48 overflow-hidden">
 														<img
 															src={mainPost.image}
@@ -415,7 +415,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 														/>
 														<div class="absolute top-4 left-4">
-															<span class="px-3 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-wider rounded">
+															<span class="px-3 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[10px] font-extrabold uppercase tracking-wider rounded">
 																{
 																	mainPost.subpillar
 																}
@@ -424,7 +424,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 														<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 													</div>
 													<div class="p-4">
-														<h3 class="text-base font-extrabold text-white mb-2 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+														<h3 class="text-base font-extrabold text-primary-50 mb-2 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 															{mainPost.title}
 														</h3>
 														{mainPost.description && (
@@ -441,7 +441,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 													href={`/posts/${secondPost.slug}`}
 													class="group block"
 												>
-													<div class="relative rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-primary-500/30 transition-all">
+													<div class="relative rounded-xl overflow-hidden bg-brand-900/72 border border-brand-800/45 hover:border-gold-400/30 transition-all">
 														<div class="relative h-32 overflow-hidden">
 															<img
 																src={
@@ -453,7 +453,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 																class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 															/>
 															<div class="absolute top-3 left-3">
-																<span class="px-2 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-[9px] font-extrabold uppercase tracking-wider rounded">
+																<span class="px-2 py-1 bg-gold-500/90 backdrop-blur-sm text-brand-950 text-[9px] font-extrabold uppercase tracking-wider rounded">
 																	{
 																		secondPost.subpillar
 																	}
@@ -462,7 +462,7 @@ Object.keys(postsByPillar).forEach(pillar => {
 															<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 														</div>
 														<div class="p-3">
-															<h3 class="text-sm font-extrabold text-white mb-1 group-hover:text-primary-500 transition-colors uppercase tracking-tight leading-tight">
+															<h3 class="text-sm font-extrabold text-primary-50 mb-1 group-hover:text-gold-300 transition-colors uppercase tracking-tight leading-tight">
 																{secondPost.title}
 															</h3>
 															{secondPost.description && (

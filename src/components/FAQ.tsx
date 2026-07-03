@@ -102,16 +102,16 @@ export default function FAQ() {
                 return (
                     <div
                         key={index}
-                        className={`border rounded-xl transition-all duration-300 overflow-hidden ${isOpen ? 'bg-[#0a0a0a] border-primary-900/40 shadow-[0_0_15px_-5px_rgba(249,115,22,0.1)]' : 'bg-transparent border-white/5 hover:border-white/20'}`}
+                        className={`border rounded-xl transition-all duration-300 overflow-hidden ${isOpen ? 'bg-brand-900/70 border-primary-900/40 shadow-[0_0_15px_-5px_rgba(249,115,22,0.1)]' : 'bg-transparent border-brand-800/40 hover:border-brand-800/60'}`}
                     >
                         <button
                             onClick={() => toggleFAQ(index)}
                             className="w-full flex items-center justify-between p-6 text-left group focus:outline-none"
                         >
-                            <h3 className={`font-bold text-sm lg:text-base pr-8 transition-colors ${isOpen ? 'text-white' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                            <h3 className={`font-bold text-sm lg:text-base pr-8 transition-colors ${isOpen ? 'text-primary-50' : 'text-primary-400 group-hover:text-primary-200'}`}>
                                 {item.q}
                             </h3>
-                            <span className={`flex-shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'text-primary-500 rotate-0' : 'text-gray-600 -rotate-90'}`}>
+                            <span className={`flex-shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'text-gold-300 rotate-0' : 'text-primary-600 -rotate-90'}`}>
                                 {isOpen ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /></svg>
                                 ) : (
@@ -128,7 +128,7 @@ export default function FAQ() {
                                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                                 >
                                     <div className="border-l-2 border-primary-600 ml-6 pl-6 mb-6">
-                                        <p className="text-gray-400 text-sm leading-relaxed max-w-3xl">
+                                        <p className="text-primary-400 text-sm leading-relaxed max-w-3xl">
                                             {item.a}
                                         </p>
                                     </div>
