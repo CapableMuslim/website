@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts");
+const posts = allPosts
+    .sort((a, b) => {
+        const dateA = a.data.pubDate ? new Date(a.data.pubDate).getTime() : 0;
+        const dateB = b.data.pubDate ? new Date(b.data.pubDate).getTime() : 0;
+        return dateB - dateA;
+    })
+    .map((post) => ({
+        title: post.data.title,
+        description: post.data.description || "",
+        image:
+            post.data.heroImage ||
+            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800&h=533",
+        subpillar: post.data.subpillar || "",
+        pillar: post.data.pillar || "",
+        slug: post.slug,
+    }));
+---
+
+<BaseLayout title="All Articles" description="Browse every article on Capable Muslim.">
+    <div class="container mx-auto px-6 py-24">
+        <div class="mb-12 border-b border-brand-700/60 pb-8">
+            <h1
+                class="text-2xl lg:text-4xl font-extrabold text-primary-50 uppercase tracking-tight mb-4"
+            >
+                All Articles
+            </h1>
+            <p class="text-stone-400 max-w-2xl">
+                Every protocol, guide, and insight published on Capable Muslim.
+            </p>
+        </div>
+
+        {
+            posts.length > 0 ? (
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {posts.map((post) => (
+                        <a href={`/posts/${post.slug}`} class="group block h-full">
+                            <div class="-$/60 border border-primary-400/10 rounded-2xl overflow-hidden h-full hover:border-gold-400/40 transition-all duration-300 transform group-hover:-translate-y-1">
+                                <div class="relative h-48 overflow-hidden">
+                                    <img
+                                        src={post.image}
+                                        alt={post.title}
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-950/90 to-transparent" />
+                                    <div class="absolute bottom-4 left-4">
+                                        <span class="px-2 py-1 bg-gold-500/90 text-brand-950 text-[10px] font-extrabold uppercase tracking-wider rounded">
+                                            {post.subpillar || post.pillar}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-primary-50 mb-3 group-hover:text-gold-300 transition-colors leading-tight">
+                                        {post.title}
+                                    </h3>
+                                    {post.description && (
+                                        <p class="text-stone-400 text-sm leading-relaxed line-clamp-3">
+                                            {post.description}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            ) : (
+                <div class="py-20 text-center border border-dashed border-brand-700/60 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-primary-50 mb-2">No articles yet</h3>
+                    <p class="text-stone-400 max-w-md mx-auto">New content is on the way. Check back soon.</p>
+                </div>
+            )
+        }
+    </div>
+</BaseLayout>
