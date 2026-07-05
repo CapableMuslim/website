@@ -1,0 +1,67 @@
+---
+import { siteConfig } from '../../data/site';
+---
+
+<section class="section-padding-lg relative overflow-hidden bg-bronze-950 text-parchment">
+    <div class="pointer-events-none absolute inset-0 bg-site-gradient" aria-hidden="true">
+        <div class="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full border border-gold/[0.06]"></div>
+        <div class="absolute -left-48 bottom-0 h-[400px] w-[400px] rounded-full border border-gold/[0.08]"></div>
+        <div class="absolute right-1/4 top-1/3 h-px w-48 bg-gradient-to-r from-transparent via-gold/25 to-transparent"></div>
+    </div>
+
+    <div class="container-content relative">
+        <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div class="lg:col-span-7">
+                <p class="eyebrow mb-6">The Capable Muslim</p>
+                <h1 class="font-display text-display-md text-balance text-parchment sm:text-display-lg lg:text-display-xl">
+                    Become healthier, stronger, wiser, and more capable as a Muslim.
+                </h1>
+                <p class="mt-6 max-w-prose text-justify text-lg leading-relaxed text-parchment-300 sm:text-xl">
+                    A practical knowledge platform for Muslim men who want to live with discipline,
+                    purpose, and competence — combining faith, health, fitness, technology, finance,
+                    relationships, and self-development into one coherent way of living.
+                </p>
+                <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                    <a href="/posts" class="btn-primary">Explore Articles</a>
+                    <a href="/about" class="btn-inverse-outline">Start Here</a>
+                </div>
+                <p class="mt-12 text-justify text-sm text-parchment-400">{siteConfig.tagline}</p>
+            </div>
+
+            <div class="hidden lg:col-span-5 lg:block">
+                <div class="relative mx-auto max-w-sm lg:max-w-none">
+                    <div class="relative aspect-[4/5]">
+                        <div class="absolute inset-0 rounded-lg border border-gold/15 bg-gold/[0.03]"></div>
+                        <div class="absolute inset-4 rounded border border-gold/25"></div>
+                        <div class="absolute inset-8 flex flex-col justify-between p-6 sm:p-8">
+                            <div>
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                                    Our Standard
+                                </p>
+                                <p class="mt-4 font-display text-2xl leading-snug text-parchment">
+                                    Knowledge you can apply. Standards you can hold.
+                                </p>
+                            </div>
+                            <div class="space-y-3 border-t border-gold/15 pt-6">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-parchment-400">Domains covered</span>
+                                    <span class="font-semibold text-parchment">10</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-parchment-400">Approach</span>
+                                    <span class="font-semibold text-parchment">Practical</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-parchment-400">Orientation</span>
+                                    <span class="font-semibold text-parchment">Long-term</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -right-2 -top-2 h-8 w-8 border-r-2 border-t-2 border-gold/40"></div>
+                        <div class="absolute -bottom-2 -left-2 h-8 w-8 border-b-2 border-l-2 border-gold/30"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,59 +1,30 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import FAQComponent from "../components/FAQ.tsx";
-import { siteConfig } from "../data/site";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQComponent from '../components/FAQ.tsx';
+import { siteConfig } from '../data/site';
 ---
 
 <BaseLayout title="FAQ">
-	<section class="py-20 lg:py-32 bg-gold-900">
-		<div class="container mx-auto px-6">
-			<div class="text-center max-w-2xl mx-auto mb-20 animate-slide-up">
-				<h1
-					class="text-4xl lg:text-5xl font-extrabold mb-4 text-primary-50 uppercase tracking-tight"
-				>
-					{siteConfig.name} FAQ
-				</h1>
-				<p class="text-lg text-primary-500 font-medium tracking-wide">
-					Clarity over noise. Systems over inspiration.
-				</p>
-			</div>
+    <section class="section-padding section-surface">
+        <div class="container-content">
+            <header class="page-header text-center">
+                <p class="eyebrow mb-3">FAQ</p>
+                <h1 class="page-title">{siteConfig.name} FAQ</h1>
+                <p class="page-lead mx-auto text-gold">
+                    Clarity over noise. Systems over inspiration.
+                </p>
+            </header>
 
-			<div class="max-w-4xl mx-auto">
-				<div
-					class="border border-brand-800/45 rounded-2xl bg-brand-900/75 p-8 shadow-2xl"
-				>
-					<FAQComponent client:visible />
-				</div>
-			</div>
+            <FAQComponent client:visible />
 
-			<div class="mt-32 max-w-4xl mx-auto">
-				<div
-					class="bg-brand-900/72 border border-brand-800/45 p-12 text-center rounded-2xl relative overflow-hidden group hover:border-primary-900/40 transition-colors"
-				>
-					<div
-						class="absolute inset-0 bg-primary-900/5 opacity-0 group-hover:opacity-100 transition-opacity"
-					>
-					</div>
-					<h3
-						class="text-2xl font-bold text-primary-50 mb-4 relative z-10"
-					>
-						Personalized Support
-					</h3>
-					<p
-						class="text-gray-400 mb-8 max-w-lg mx-auto text-sm leading-relaxed relative z-10"
-					>
-						If your question is technical or relates to billing, our
-						support team is available. Please prioritize using the
-						system first.
-					</p>
-					<a
-						href="/contact"
-						class="relative z-10 inline-flex items-center justify-center px-8 py-3 bg-white text-black hover:bg-primary-500 hover:text-primary-50 font-black uppercase tracking-[0.2em] rounded-none transition-all duration-300 text-xs"
-					>
-						Contact Support
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+            <div class="card mt-12 p-8 text-center sm:p-10">
+                <h2 class="font-display text-xl text-parchment">Personalized Support</h2>
+                <p class="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-parchment-300">
+                    If your question is technical or relates to billing, our support team is available.
+                    Please prioritize using the system first.
+                </p>
+                <a href="/contact" class="btn-primary mt-6 inline-flex">Contact Support</a>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

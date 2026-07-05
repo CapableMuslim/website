@@ -1,8 +1,8 @@
 export const siteConfig = {
-    name: 'Capable Muslim',
+    name: 'The Capable Muslim',
     tagline: 'Build capability. Live with purpose.',
     defaultDescription:
-        'Capable Muslim — practical guidance for strength, faith, and disciplined living.',
+        'The Capable Muslim — practical guidance for strength, faith, and disciplined living.',
     footerTagline:
         'You were created for more than comfort and distraction. We walk with Muslims who refuse to settle — faith at the center, discipline in the daily grind, and the quiet courage to become who you were always meant to be.',
     email: 'contact@capablemuslim.com',

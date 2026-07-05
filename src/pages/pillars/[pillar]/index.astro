@@ -1,7 +1,9 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { pillarsData } from "../../../data/pillars";
-import { getCollection } from "astro:content";
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/ui/ArticleCard.astro';
+import { pillarsData } from '../../../data/pillars';
+import { getCollection } from 'astro:content';
+import { sortPostsByDate, toPostCard } from '../../../lib/posts';
 
 export async function getStaticPaths() {
     return pillarsData.map((pillar) => ({
@@ -13,112 +15,54 @@ export async function getStaticPaths() {
 const { pillarData } = Astro.props;
 const { name, subpillars } = pillarData;
 
-// Fetch posts from content collection for this pillar
-const allPosts = await getCollection("posts");
-const posts = allPosts
-    .filter(post => post.data.pillar === name)
-    .sort((a, b) => {
-        const dateA = a.data.pubDate ? new Date(a.data.pubDate).getTime() : 0;
-        const dateB = b.data.pubDate ? new Date(b.data.pubDate).getTime() : 0;
-        return dateB - dateA;
-    })
-    .map(post => ({
-        title: post.data.title,
-        description: post.data.description || "",
-        image: post.data.heroImage || "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800&h=533",
-        subpillar: post.data.subpillar || "",
-        slug: post.slug,
-    }));
+const allPosts = await getCollection('posts');
+const posts = sortPostsByDate(allPosts.filter((post) => post.data.pillar === name)).map(toPostCard);
 
-const pageTitle = `${name} | The Inner Fire`;
 const pageDescription = `Master your life with our ${name} protocols and guides.`;
 ---
 
 <BaseLayout title={name} description={pageDescription}>
-    <div class="container mx-auto px-6 py-24">
-        <div class="mb-12 border-b border-brand-800/50 pb-8">
-            <h1
-                class="text-2xl lg:text-4xl font-extrabold text-primary-50 uppercase tracking-tight mb-6"
-            >
-                {name}
-            </h1>
+    <section class="section-padding section-surface">
+        <div class="container-content">
+            <header class="page-header">
+                <p class="eyebrow mb-3">Pillar</p>
+                <h1 class="page-title">{name}</h1>
+                <p class="page-lead">
+                    Articles, protocols, and guides for building capability in {name.toLowerCase()}.
+                </p>
+            </header>
 
-            <div class="flex flex-wrap gap-3">
-                {
-                    subpillars.map((sub) => (
-                        <a
-                            href={`/pillars/${pillarData.slug}/${sub.toLowerCase().replace(/ /g, "-")}`}
-                            class="px-4 py-2 bg-brand-900/40 hover:bg-gold-400 border border-brand-800/50 hover:border-gold-300 rounded-lg text-xs font-bold text-primary-400 hover:text-brand-950 uppercase tracking-wider transition-all"
-                        >
-                            {sub}
-                        </a>
-                    ))
-                }
-            </div>
-        </div>
-
-        {
-            posts.length > 0 ? (
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post) => (
-                        <a
-                            href={`/posts/${post.slug}`}
-                            class="group block h-full"
-                        >
-                            <div class="bg-brand-900/70 border border-brand-800/50 rounded-2xl overflow-hidden h-full hover:border-gold-300/50 transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div class="relative h-48 overflow-hidden">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                    <div class="absolute bottom-4 left-4">
-                                        <span class="px-2 py-1 bg-gold-400/90 text-brand-950 text-[10px] font-extrabold uppercase tracking-wider rounded">
-                                            {post.subpillar}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-bold text-primary-50 mb-3 group-hover:text-gold-300 transition-colors leading-tight">
-                                        {post.title}
-                                    </h3>
-                                    {post.description && (
-                                        <p class="text-primary-400 text-sm leading-relaxed line-clamp-3">
-                                            {post.description}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                        </a>
-                    ))}
-                </div>
-            ) : (
-                <div class="py-20 text-center border border-dashed border-brand-800/50 rounded-2xl">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-900/40 mb-6 text-primary-500">
-                        <svg
-                            class="w-8 h-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                            />
-                        </svg>
+            {
+                subpillars.length > 0 && (
+                    <div class="mb-10 flex flex-wrap gap-2">
+                        {subpillars.map((sub) => (
+                            <a
+                                href={`/pillars/${pillarData.slug}/${sub.toLowerCase().replace(/ /g, '-')}`}
+                                class="rounded border border-gold/20 bg-bronze-950/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-parchment-300 transition-colors hover:border-gold/40 hover:text-gold"
+                            >
+                                {sub}
+                            </a>
+                        ))}
                     </div>
-                    <h3 class="text-2xl font-bold text-primary-50 mb-2">
-                        Library Growing
-                    </h3>
-                    <p class="text-primary-400 max-w-md mx-auto">
-                        We are actively curating the high-performance protocols
-                        for {name}. Check back soon.
-                    </p>
-                </div>
-            )
-        }
-    </div>
+                )
+            }
+
+            {
+                posts.length > 0 ? (
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {posts.map((post) => (
+                            <ArticleCard post={post} variant="default" />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="card py-16 text-center">
+                        <h2 class="font-display text-xl text-parchment">Library growing</h2>
+                        <p class="mt-2 max-w-md mx-auto text-sm text-parchment-400">
+                            We are actively curating the high-performance protocols for {name}. Check back soon.
+                        </p>
+                    </div>
+                )
+            }
+        </div>
+    </section>
 </BaseLayout>

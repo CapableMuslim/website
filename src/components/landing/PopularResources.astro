@@ -1,0 +1,46 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { popularResources } from '../../data/landing';
+
+const typeColors: Record<string, string> = {
+    Guide: 'text-gold',
+    Framework: 'text-gold-300',
+    Reading: 'text-parchment-300',
+    Article: 'text-parchment-400',
+};
+---
+
+<section class="section-padding section-surface border-y border-gold/10">
+    <div class="container-content">
+        <SectionHeader
+            label="Resources"
+            title="Start with what matters"
+            description="Guides, frameworks, and essential reading — curated for practical use."
+            class="mb-12"
+        />
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                popularResources.map((resource) => (
+                    <a href={resource.href} class="group block">
+                        <article class="card h-full p-5 sm:p-6">
+                            <span class:list={['text-[11px] font-semibold uppercase tracking-[0.12em]', typeColors[resource.type]]}>
+                                {resource.type}
+                            </span>
+                            <h3 class="mt-2 font-display text-lg leading-snug text-parchment transition-colors group-hover:text-gold">
+                                {resource.title}
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-parchment-300 text-justify">
+                                {resource.description}
+                            </p>
+                        </article>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="/bookshelf" class="btn-secondary">Browse the bookshelf</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section id="newsletter" class="section-padding-sm section-surface-alt border-t border-gold/10">
+    <div class="container-content">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+                <SectionHeader
+                    label="Newsletter"
+                    title="One thoughtful letter, weekly"
+                    description="Practical ideas on health, discipline, faith, and capability. No hype, no filler — just writing worth reading."
+                />
+                <a
+                    href="/newsletter"
+                    class="mt-6 inline-flex items-center text-sm font-semibold text-gold transition-colors hover:text-gold-300"
+                >
+                    Learn more about the newsletter
+                    <svg class="ml-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="card p-6 sm:p-8">
+                <p class="mb-4 font-display text-lg text-parchment">Subscribe</p>
+                <form class="flex flex-col gap-3" action="#" method="post">
+                    <label for="newsletter-email" class="text-xs font-semibold uppercase tracking-wider text-gold">
+                        Email address
+                    </label>
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        name="email"
+                        required
+                        placeholder="you@example.com"
+                        class="input-field"
+                    />
+                    <button type="submit" class="btn-primary w-full sm:w-auto">Subscribe</button>
+                </form>
+                <p class="mt-4 text-xs leading-relaxed text-parchment-400">
+                    Free. Unsubscribe anytime. We respect your attention.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

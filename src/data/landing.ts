@@ -1,0 +1,188 @@
+import { pillarsData } from './pillars';
+
+export type LandingPillar = {
+    name: string;
+    slug: string;
+    href: string;
+    description: string;
+    icon: string;
+};
+
+export const landingPillars: LandingPillar[] = [
+    {
+        name: 'Deen',
+        slug: 'deen',
+        href: '/about',
+        description: 'Faith as a living framework — worship, character, purpose, and responsibility in the modern world.',
+        icon: 'compass',
+    },
+    {
+        name: 'Health',
+        slug: 'health',
+        href: '/pillars/health',
+        description: 'Nutrition, sleep, longevity, and the physical foundations of a capable life.',
+        icon: 'heart-pulse',
+    },
+    {
+        name: 'Mindset',
+        slug: 'mindset',
+        href: '/pillars/mindset',
+        description: 'Identity, discipline, stoicism, and the mental architecture of lasting growth.',
+        icon: 'brain',
+    },
+    {
+        name: 'Social',
+        slug: 'social',
+        href: '/pillars/social',
+        description: 'Friendship, family, communication, and building meaningful relationships.',
+        icon: 'users',
+    },
+    {
+        name: 'Fitness',
+        slug: 'fitness',
+        href: '/pillars/fitness',
+        description: 'Strength, endurance, martial arts, and the body as an instrument of capability.',
+        icon: 'dumbbell',
+    },
+    {
+        name: 'Skills',
+        slug: 'skills',
+        href: '/pillars/skills',
+        description: 'Practical know-how, craftsmanship, and competence in the physical world.',
+        icon: 'wrench',
+    },
+    {
+        name: 'Style',
+        slug: 'style',
+        href: '/pillars/style',
+        description: 'Presentation, grooming, and the quiet confidence of a well-considered appearance.',
+        icon: 'shirt',
+    },
+    {
+        name: 'Culture',
+        slug: 'culture',
+        href: '/pillars/culture',
+        description: 'Reading, entertainment, hobbies, and curating a life of substance.',
+        icon: 'book-open',
+    },
+    {
+        name: 'Technology',
+        slug: 'technology',
+        href: '/pillars/technology',
+        description: 'AI, tools, devices, and using technology with intention rather than distraction.',
+        icon: 'cpu',
+    },
+    {
+        name: 'Finance',
+        slug: 'finance',
+        href: '/pillars/finance',
+        description: 'Career, income, investing, and building long-term financial capability.',
+        icon: 'landmark',
+    },
+];
+
+export type PopularResource = {
+    title: string;
+    description: string;
+    href: string;
+    type: 'Guide' | 'Framework' | 'Reading' | 'Article';
+};
+
+export const popularResources: PopularResource[] = [
+    {
+        title: 'Nutrition Fundamentals',
+        description: 'A practical foundation for eating well without complexity or dogma.',
+        href: '/posts/nutrition-fundamentals',
+        type: 'Guide',
+    },
+    {
+        title: 'Strength Training Essentials',
+        description: 'The core principles every man should understand before stepping into a gym.',
+        href: '/posts/strength-training-essentials',
+        type: 'Guide',
+    },
+    {
+        title: 'Forging an Unbreakable Identity',
+        description: 'How to build a sense of self that withstands pressure and drives growth.',
+        href: '/posts/forging-unbreakable-identity',
+        type: 'Framework',
+    },
+    {
+        title: 'Essential Books Every Man Should Read',
+        description: 'Curated reading that sharpens thinking, character, and capability.',
+        href: '/posts/essential-books-every-man-should-read',
+        type: 'Reading',
+    },
+    {
+        title: 'Building Wealth: Financial Foundations',
+        description: 'Long-term thinking about money, career, and financial responsibility.',
+        href: '/posts/building-wealth-financial-foundations',
+        type: 'Article',
+    },
+    {
+        title: 'Essential Skills Every Man Should Master',
+        description: 'Competencies that serve you across every domain of life.',
+        href: '/posts/essential-skills-every-man-should-master',
+        type: 'Guide',
+    },
+];
+
+/** Slugs to feature on the homepage — falls back to latest posts if unavailable */
+export const featuredSlugs = [
+    'forging-unbreakable-identity',
+    'nutrition-fundamentals',
+    'strength-training-essentials',
+    'building-wealth-financial-foundations',
+    'essential-books-every-man-should-read',
+    'leveraging-ai-technology-for-peak-performance',
+];
+
+export type NavLink = {
+    label: string;
+    href: string;
+    /** When present, the desktop nav renders a dropdown of pillars/subpillars */
+    dropdown?: 'articles';
+};
+
+export const navLinks: NavLink[] = [
+    { label: 'Articles', href: '/posts', dropdown: 'articles' },
+    { label: 'Newsletter', href: '/newsletter' },
+    { label: 'Community', href: '/about' },
+    { label: 'Donate', href: '/contact' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Bookshelf', href: '/bookshelf' },
+];
+
+export type ArticleCategory = {
+    name: string;
+    href: string;
+    subpillars: { label: string; href: string }[];
+};
+
+/** Pillars + subpillars for the Articles dropdown, sourced from pillarsData */
+export const articleCategories: ArticleCategory[] = pillarsData
+    .filter((p) => p.slug !== 'bookshelf')
+    .map((pillar) => ({
+        name: pillar.name.charAt(0) + pillar.name.slice(1).toLowerCase(),
+        href: `/pillars/${pillar.slug}`,
+        subpillars: pillar.subpillars.map((sub) => ({
+            label: sub
+                .toLowerCase()
+                .split(' ')
+                .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(' '),
+            href: `/pillars/${pillar.slug}/${sub.toLowerCase().replace(/ /g, '-')}`,
+        })),
+    }));
+
+export const footerCategories = landingPillars.map((p) => ({
+    label: p.name,
+    href: p.href,
+}));
+
+export const footerCompanyLinks = [
+    { label: 'About', href: '/about' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+] as const;

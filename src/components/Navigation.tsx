@@ -1,115 +1,125 @@
 import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-
-
-import { pillarsData } from '../data/pillars';
-
-const NAV_DATA = pillarsData.map(pillar => ({
-    id: pillar.slug,
-    label: pillar.name,
-    href: pillar.slug === 'bookshelf' ? '/bookshelf' : `/pillars/${pillar.slug}`,
-    subpillars: pillar.subpillars,
-}));
-
-
+import { navLinks, articleCategories } from '../data/landing';
+import type { ArticleCategory } from '../data/landing';
 
 export default function Navigation() {
-    const [activeId, setActiveId] = useState<string | null>(null);
-    const timeoutRef = useRef<any | null>(null);
+    const [articlesOpen, setArticlesOpen] = useState(false);
+    const [activeCategory, setActiveCategory] = useState<ArticleCategory | null>(null);
+    const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const handleMouseEnter = (id: string) => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        // Don't show dropdown for bookshelf
-        if (id === 'bookshelf') {
-            setActiveId(null);
-        } else {
-            setActiveId(id);
-        }
+    const openDropdown = () => {
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+        setArticlesOpen(true);
     };
 
-    const handleMouseLeave = () => {
-        timeoutRef.current = setTimeout(() => {
-            setActiveId(null);
+    const scheduleClose = () => {
+        closeTimeout.current = setTimeout(() => {
+            setArticlesOpen(false);
+            setActiveCategory(null);
         }, 150);
     };
 
-    const activeCategory = NAV_DATA.find(item => item.id === activeId);
+    const handleCategoryEnter = (category: ArticleCategory) => {
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+        setActiveCategory(category);
+    };
 
     return (
-        <nav className="hidden xl:block" onMouseLeave={handleMouseLeave}>
-
-            <ul className="flex items-center space-x-8">
-                {NAV_DATA.map(item => (
-                    <li key={item.id} className="relative py-5">
-                        <a
-                            href={item.href}
-                            className={`text-xs font-extrabold transition-colors uppercase tracking-[0.1em] ${
-                                item.id === 'bookshelf' 
-                                    ? 'text-white hover:text-primary-500' 
-                                    : activeId === item.id 
-                                        ? 'text-primary-500' 
-                                        : 'text-white hover:text-primary-500'
-                            }`}
-                            onMouseEnter={() => handleMouseEnter(item.id)}
+        <nav className="hidden lg:block" aria-label="Main navigation">
+            <ul className="flex items-center gap-1">
+                {navLinks.map((link) =>
+                    link.dropdown === 'articles' ? (
+                        <li
+                            key={link.href}
+                            className="relative"
+                            onMouseEnter={openDropdown}
+                            onMouseLeave={scheduleClose}
                         >
-                            {item.label}
-                        </a>
-
-                        {activeId === item.id && item.id !== 'bookshelf' && (
-                            <motion.div
-                                layoutId="navIndicator"
-                                className="absolute bottom-6 left-0 right-0 h-0.5 bg-primary-500 shadow-glow"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                            />
-                        )}
-                    </li>
-                ))}
+                            <a
+                                href={link.href}
+                                className={`nav-link inline-flex items-center gap-1 rounded px-3 py-2 ${
+                                    articlesOpen ? 'text-parchment' : ''
+                                }`}
+                                aria-expanded={articlesOpen}
+                                aria-haspopup="true"
+                                onFocus={openDropdown}
+                            >
+                                {link.label}
+                                <svg
+                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${articlesOpen ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </a>
+                        </li>
+                    ) : (
+                        <li key={`${link.label}-${link.href}`}>
+                            <a href={link.href} className="nav-link rounded px-3 py-2">
+                                {link.label}
+                            </a>
+                        </li>
+                    ),
+                )}
             </ul>
 
-
-            <AnimatePresence>
-                {activeCategory && (
-                    <motion.div
-                        key="dropdown"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 right-0 top-full w-full bg-[#0a0a0a] border-t border-b border-white/10 shadow-2xl z-40"
-                        onMouseEnter={() => {
-                            if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                        }}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div className="container mx-auto px-6 py-6">
-
-                            <div className="flex justify-center space-x-8 mb-6 pb-4">
-                                {activeCategory.subpillars.map((sub, idx) => (
-                                    <a
-                                        key={idx}
-                                        href={`${activeCategory.href}/${sub.toLowerCase().replace(/ /g, '-')}`}
-                                        className="text-xs font-bold text-white/60 hover:text-white transition-colors uppercase tracking-widest"
-                                    >
-                                        {sub}
-                                    </a>
-                                ))}
+            {articlesOpen && (
+                <div
+                    className="fixed inset-x-0 top-16 z-40 border-b border-gold/15 bg-bronze-800 shadow-elevated lg:top-[4.5rem]"
+                    onMouseEnter={openDropdown}
+                    onMouseLeave={scheduleClose}
+                >
+                    <div className="container-content py-5">
+                        <div className="overflow-hidden rounded-lg border border-gold/15">
+                            {/* Step 1: categories only — single centered row */}
+                            <div className="bg-bronze-850/80 px-4 py-4">
+                                <ul className="flex flex-wrap items-center justify-center gap-1">
+                                    {articleCategories.map((category) => (
+                                        <li key={category.href}>
+                                            <a
+                                                href={category.href}
+                                                className={`inline-block rounded px-3 py-2 text-sm transition-colors ${
+                                                    activeCategory?.href === category.href
+                                                        ? 'bg-gold/15 font-semibold text-gold'
+                                                        : 'text-parchment-300 hover:bg-gold/10 hover:text-parchment'
+                                                }`}
+                                                onMouseEnter={() => handleCategoryEnter(category)}
+                                            >
+                                                {category.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
 
-                            <div className="flex justify-center mt-6">
-                                <a
-                                    href={activeCategory.href}
-                                    className="inline-flex items-center text-xs font-black text-primary-600 hover:text-white transition-colors uppercase tracking-[0.2em] group"
+                            {/* Step 2: subcategories — only after hovering a category */}
+                            {activeCategory && (
+                                <div
+                                    className="border-t border-gold/10 bg-bronze-800/90 px-6 py-4"
+                                    onMouseEnter={() => handleCategoryEnter(activeCategory)}
                                 >
-                                    Browse All {activeCategory.label.toLowerCase()}
-                                    <span className="ml-2 transform group-hover:translate-x-1 transition-transform">›››</span>
-                                </a>
-                            </div>
+                                    <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                                        {activeCategory.subpillars.map((sub) => (
+                                            <li key={sub.href}>
+                                                <a
+                                                    href={sub.href}
+                                                    className="text-sm text-parchment-300 transition-colors hover:text-gold"
+                                                >
+                                                    {sub.label}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }

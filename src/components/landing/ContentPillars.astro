@@ -1,0 +1,20 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import PillarCard from '../ui/PillarCard.astro';
+import { landingPillars } from '../../data/landing';
+---
+
+<section class="section-padding section-surface-alt border-y border-gold/10">
+    <div class="container-content">
+        <SectionHeader
+            label="Explore"
+            title="Ten domains of capability"
+            description="Every area of life connected by a single standard: practical knowledge, applied with discipline."
+            class="mb-12"
+        />
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {landingPillars.map((pillar) => <PillarCard pillar={pillar} />)}
+        </div>
+    </div>
+</section>

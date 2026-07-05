@@ -1,0 +1,37 @@
+---
+interface Props {
+    label?: string;
+    title: string;
+    description?: string;
+    align?: 'left' | 'center';
+    dark?: boolean;
+    class?: string;
+}
+
+const {
+    label,
+    title,
+    description,
+    align = 'left',
+    dark = false,
+    class: className = '',
+} = Astro.props;
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : '';
+const titleColor = dark ? 'text-parchment' : 'text-parchment';
+const descColor = dark ? 'text-parchment-300' : 'text-parchment-300';
+---
+
+<header class:list={['max-w-prose', alignClass, className]}>
+    {label && <p class="eyebrow mb-3">{label}</p>}
+    <h2 class:list={['font-display text-display-sm sm:text-display-md text-balance', titleColor]}>
+        {title}
+    </h2>
+    {
+        description && (
+            <p class:list={['section-desc mt-4 text-base leading-relaxed sm:text-lg', descColor]}>
+                {description}
+            </p>
+        )
+    }
+</header>

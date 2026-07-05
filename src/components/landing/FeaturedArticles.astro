@@ -1,0 +1,47 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import ArticleCard from '../ui/ArticleCard.astro';
+import type { PostCard } from '../../lib/posts';
+
+interface Props {
+    posts: PostCard[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+    posts.length > 0 && (
+        <section class="section-padding section-surface">
+            <div class="container-content">
+                <div class="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <SectionHeader
+                        label="Featured"
+                        title="Articles worth your time"
+                        description="In-depth, practical writing across every domain of capability."
+                    />
+                    <a href="/posts" class="btn-ghost shrink-0 self-start sm:self-auto">
+                        View all articles
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {posts.slice(0, 3).map((post) => (
+                        <ArticleCard post={post} variant="featured" />
+                    ))}
+                </div>
+
+                {posts.length > 3 && (
+                    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {posts.slice(3, 6).map((post) => (
+                            <ArticleCard post={post} variant="default" />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </section>
+    )
+}

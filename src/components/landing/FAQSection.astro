@@ -1,0 +1,37 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import FAQComponent from '../FAQ.tsx';
+import { siteConfig } from '../../data/site';
+import { getFeaturedFaqItems } from '../../data/faq';
+
+const featuredFaq = getFeaturedFaqItems();
+---
+
+<section id="faq" class="section-padding section-surface border-t border-gold/10">
+    <div class="container-content">
+        <SectionHeader
+            label="FAQ"
+            title={`${siteConfig.name} FAQ`}
+            description="Clarity over noise. Systems over inspiration."
+            align="center"
+            class="mb-10"
+        />
+
+        <FAQComponent client:visible items={featuredFaq} />
+
+        <p class="mt-8 text-center">
+            <a href="/faq" class="text-sm font-semibold text-gold transition-colors hover:text-gold-300">
+                View all questions →
+            </a>
+        </p>
+
+        <div class="card mt-10 p-8 text-center sm:p-10">
+            <h2 class="font-display text-xl text-parchment">Personalized Support</h2>
+            <p class="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-parchment-300">
+                If your question is technical or relates to billing, our support team is available.
+                Please prioritize using the system first.
+            </p>
+            <a href="/contact" class="btn-primary mt-6 inline-flex">Contact Support</a>
+        </div>
+    </div>
+</section>

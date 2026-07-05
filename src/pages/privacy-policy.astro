@@ -26,42 +26,31 @@ const sections = [
     title="Privacy Policy"
     description={`How ${name} collects, uses, and protects your personal data.`}
 >
-    <section class="py-16 lg:py-24 bg-gold-900">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-14 lg:mb-16">
-                <p class="text-xs font-bold uppercase tracking-[0.25em] text-gold-400 mb-4">
-                    Legal
-                </p>
-                <h1 class="text-4xl lg:text-5xl font-extrabold text-primary-50 uppercase tracking-tight mb-4">
-                    Privacy Policy
-                </h1>
-                <p class="text-stone-400 max-w-2xl mx-auto leading-relaxed">
+    <section class="section-padding section-surface">
+        <div class="container-content max-w-6xl">
+            <header class="page-header text-center">
+                <p class="eyebrow mb-3">Legal</p>
+                <h1 class="page-title">Privacy Policy</h1>
+                <p class="page-lead mx-auto">
                     {name} respects your privacy and is committed to protecting your personal data.
                     This policy explains how we collect, use, disclose, and safeguard your information.
                 </p>
-                <div class="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-brand-700/60 bg-brand-900/55 text-xs font-bold uppercase tracking-wider text-primary-300">
-                    <span>Effective: January 10, 2026</span>
-                    <span class="text-stone-600">|</span>
-                    <span>Last updated: July 2, 2026</span>
-                </div>
-            </div>
+                <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-parchment-400">
+                    Effective: January 10, 2026 · Last updated: July 2, 2026
+                </p>
+            </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-10 lg:gap-14">
-                <nav
-                    aria-label="Privacy policy sections"
-                    class="hidden lg:block"
-                >
-                    <div class="sticky top-28 bg-brand-900/65 border border-primary-400/10 rounded-2xl p-5">
-                        <h2 class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold-400 mb-4">
-                            On this page
-                        </h2>
+            <div class="grid grid-cols-1 gap-10 lg:grid-cols-[200px_1fr] lg:gap-14">
+                <nav aria-label="Privacy policy sections" class="hidden lg:block">
+                    <div class="card sticky top-28 p-5">
+                        <h2 class="eyebrow mb-4">On this page</h2>
                         <ul class="space-y-2">
                             {
                                 sections.map((section) => (
                                     <li>
                                         <a
                                             href={`#${section.id}`}
-                                            class="text-xs text-primary-300 hover:text-gold-300 transition-colors leading-snug block"
+                                            class="text-xs leading-snug text-parchment-300 transition-colors hover:text-gold"
                                         >
                                             {section.title}
                                         </a>
@@ -73,64 +62,57 @@ const sections = [
                 </nav>
 
                 <div class="space-y-6">
-                    <section id="introduction" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Introduction
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="introduction" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Introduction</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             {name} ("we," "our," or "us") respects your privacy and is committed to protecting your personal data.
                             This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website,
                             subscribe to our content, or interact with our platform and related tools.
                         </p>
                     </section>
 
-                    <section id="definitions" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Definitions
-                        </h2>
-                        <dl class="space-y-4">
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <dt class="text-sm font-bold text-gold-300 mb-1">Service</dt>
-                                <dd class="text-sm text-stone-400">The {name} platform, website, and related tools.</dd>
+                    <section id="definitions" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Definitions</h2>
+                        <div class="divider my-4" />
+                        <dl class="space-y-3">
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <dt class="text-sm font-semibold text-gold">Service</dt>
+                                <dd class="mt-1 text-sm text-parchment-300">The {name} platform, website, and related tools.</dd>
                             </div>
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <dt class="text-sm font-bold text-gold-300 mb-1">Personal Data</dt>
-                                <dd class="text-sm text-stone-400">Information that identifies a living individual.</dd>
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <dt class="text-sm font-semibold text-gold">Personal Data</dt>
+                                <dd class="mt-1 text-sm text-parchment-300">Information that identifies a living individual.</dd>
                             </div>
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <dt class="text-sm font-bold text-gold-300 mb-1">Usage Data</dt>
-                                <dd class="text-sm text-stone-400">Data collected automatically from your interactions with the Service.</dd>
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <dt class="text-sm font-semibold text-gold">Usage Data</dt>
+                                <dd class="mt-1 text-sm text-parchment-300">Data collected automatically from your interactions with the Service.</dd>
                             </div>
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <dt class="text-sm font-bold text-gold-300 mb-1">User</dt>
-                                <dd class="text-sm text-stone-400">Any individual accessing or using the Service.</dd>
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <dt class="text-sm font-semibold text-gold">User</dt>
+                                <dd class="mt-1 text-sm text-parchment-300">Any individual accessing or using the Service.</dd>
                             </div>
                         </dl>
                     </section>
 
-                    <section id="information-we-collect" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Information We Collect
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed mb-6">
+                    <section id="information-we-collect" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Information We Collect</h2>
+                        <div class="divider my-4" />
+                        <p class="mb-6 leading-relaxed text-parchment-300">
                             We collect information to operate effectively, improve our content, and communicate with you when you choose to hear from us.
                         </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-5">
-                                <h3 class="text-sm font-bold uppercase tracking-wider text-primary-200 mb-3">
-                                    Information You Provide
-                                </h3>
-                                <ul class="space-y-2 text-sm text-stone-400">
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-5">
+                                <h3 class="mb-3 text-sm font-semibold text-parchment">Information You Provide</h3>
+                                <ul class="space-y-2 text-sm text-parchment-300">
                                     <li>Email address when you subscribe to our newsletter</li>
                                     <li>Name and message when you submit our contact form</li>
                                     <li>Username and preferences where applicable</li>
                                 </ul>
                             </div>
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-5">
-                                <h3 class="text-sm font-bold uppercase tracking-wider text-primary-200 mb-3">
-                                    Automatically Collected
-                                </h3>
-                                <ul class="space-y-2 text-sm text-stone-400">
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-5">
+                                <h3 class="mb-3 text-sm font-semibold text-parchment">Automatically Collected</h3>
+                                <ul class="space-y-2 text-sm text-parchment-300">
                                     <li>Browser type, version, and operating system</li>
                                     <li>Pages visited, time spent, and referring website</li>
                                     <li>IP address (anonymized where possible)</li>
@@ -140,157 +122,136 @@ const sections = [
                         </div>
                     </section>
 
-                    <section id="how-we-use-data" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            How We Use Data
-                        </h2>
-                        <ul class="space-y-3 text-stone-300">
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Service maintenance, improvement, and content optimization</span></li>
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Sending newsletter content you have subscribed to</span></li>
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Responding to your inquiries and support requests</span></li>
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Community features and progress tracking where available</span></li>
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Security, fraud prevention, and legal compliance</span></li>
-                            <li class="flex gap-3"><span class="text-gold-400 font-bold">•</span><span>Analyzing usage patterns to improve performance</span></li>
+                    <section id="how-we-use-data" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">How We Use Data</h2>
+                        <div class="divider my-4" />
+                        <ul class="space-y-3 text-parchment-300">
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Service maintenance, improvement, and content optimization</span></li>
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Sending newsletter content you have subscribed to</span></li>
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Responding to your inquiries and support requests</span></li>
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Community features and progress tracking where available</span></li>
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Security, fraud prevention, and legal compliance</span></li>
+                            <li class="flex gap-3"><span class="text-gold">•</span><span>Analyzing usage patterns to improve performance</span></li>
                         </ul>
-                        <p class="mt-5 text-sm font-semibold text-gold-300 border-l-2 border-gold-500 pl-4">
+                        <p class="mt-5 border-l-2 border-gold/50 pl-4 text-sm font-semibold text-gold">
                             We do not sell your personal data.
                         </p>
                     </section>
 
-                    <section id="cookies" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Cookies & Tracking
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed mb-4">
+                    <section id="cookies" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Cookies & Tracking</h2>
+                        <div class="divider my-4" />
+                        <p class="mb-4 leading-relaxed text-parchment-300">
                             We use cookies and similar technologies for functionality, security, and analytics.
                             You may disable cookies in your browser settings, though some features may not work correctly.
                         </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <h3 class="text-sm font-bold text-primary-200 mb-2">Essential cookies</h3>
-                                <p class="text-sm text-stone-400">Required for core site functionality and security.</p>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <h3 class="mb-2 text-sm font-semibold text-parchment">Essential cookies</h3>
+                                <p class="text-sm text-parchment-300">Required for core site functionality and security.</p>
                             </div>
-                            <div class="rounded-xl bg-brand-900/45 border border-primary-400/10 p-4">
-                                <h3 class="text-sm font-bold text-primary-200 mb-2">Analytics cookies</h3>
-                                <p class="text-sm text-stone-400">Help us understand how visitors use our site so we can improve it.</p>
+                            <div class="rounded border border-gold/10 bg-bronze-950/40 p-4">
+                                <h3 class="mb-2 text-sm font-semibold text-parchment">Analytics cookies</h3>
+                                <p class="text-sm text-parchment-300">Help us understand how visitors use our site so we can improve it.</p>
                             </div>
                         </div>
                     </section>
 
-                    <section id="newsletter" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Newsletter Services
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="newsletter" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Newsletter Services</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             We may use third-party email service providers (such as ConvertKit, Beehiiv, or Mailchimp) to manage newsletter subscriptions.
                             These providers process your email address according to their own privacy policies.
                             You may unsubscribe at any time using the link in any newsletter email.
                         </p>
                     </section>
 
-                    <section id="ai-automation" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            AI & Automation
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="ai-automation" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">AI & Automation</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             We may use AI and automated systems to provide structured guidance, organize content, and improve user experience.
                             These systems do not replace professional medical, legal, financial, or religious advice.
                             Always consult qualified professionals for matters requiring expert judgment.
                         </p>
                     </section>
 
-                    <section id="third-party" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Third-Party Links
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="third-party" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Third-Party Links</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             Our website may contain links to third-party websites, including social platforms and external resources.
                             We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies separately.
                         </p>
                     </section>
 
-                    <section id="data-retention" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Data Retention
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="data-retention" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Data Retention</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             We retain your personal information only as long as necessary to fulfill the purposes outlined in this policy,
                             unless a longer retention period is required or permitted by law.
                         </p>
                     </section>
 
-                    <section id="your-rights" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Your Rights
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed mb-4">
+                    <section id="your-rights" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Your Rights</h2>
+                        <div class="divider my-4" />
+                        <p class="mb-4 leading-relaxed text-parchment-300">
                             Depending on your location, you may have the right to:
                         </p>
-                        <ul class="space-y-2 text-sm text-stone-400 mb-5">
+                        <ul class="mb-5 space-y-2 text-sm text-parchment-300">
                             <li>Access the personal data we hold about you</li>
                             <li>Request correction of inaccurate data</li>
                             <li>Request deletion of your data</li>
                             <li>Withdraw consent for newsletter communications</li>
                             <li>Object to or restrict certain processing</li>
                         </ul>
-                        <p class="text-stone-300 leading-relaxed">
+                        <p class="leading-relaxed text-parchment-300">
                             Residents of the European Economic Area (EEA) also have rights under GDPR to access, correct, delete,
                             or restrict processing of their data. To exercise any of these rights, contact us at{' '}
-                            <a href={`mailto:${email}`} class="text-gold-300 hover:text-gold-200 font-semibold underline">{email}</a>.
+                            <a href={`mailto:${email}`} class="font-semibold text-gold hover:text-gold-300 underline">{email}</a>.
                         </p>
                     </section>
 
-                    <section id="children" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Children's Privacy
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="children" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Children's Privacy</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             Our website is not intended for children under 16. We do not knowingly collect personal information from children.
                             If you believe we have collected data from a child, please contact us and we will take steps to remove it.
                         </p>
                     </section>
 
-                    <section id="security" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Security
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="security" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Security</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             We implement appropriate technical and organizational measures to protect your personal data.
                             However, no method of transmission over the Internet or electronic storage is 100% secure,
                             and we cannot guarantee absolute security.
                         </p>
                     </section>
 
-                    <section id="changes" class="scroll-mt-28 bg-brand-900/55 border border-primary-400/10 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Changes to This Policy
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed">
+                    <section id="changes" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Changes to This Policy</h2>
+                        <div class="divider my-4" />
+                        <p class="leading-relaxed text-parchment-300">
                             We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date.
                             Continued use of the Service after changes are posted constitutes acceptance of the updated policy.
                         </p>
                     </section>
 
-                    <section id="contact" class="scroll-mt-28 bg-brand-900/55 border border-brand-700/60 rounded-2xl p-6 lg:p-8">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-primary-50 uppercase tracking-tight mb-4 border-b border-brand-700/60 pb-3">
-                            Contact Us
-                        </h2>
-                        <p class="text-stone-300 leading-relaxed mb-6">
+                    <section id="contact" class="card scroll-mt-28 p-6 lg:p-8">
+                        <h2 class="font-display text-xl text-parchment lg:text-2xl">Contact Us</h2>
+                        <div class="divider my-4" />
+                        <p class="mb-6 leading-relaxed text-parchment-300">
                             If you have questions about this Privacy Policy or how your data is handled, reach out to us directly.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a
-                                href={`mailto:${email}`}
-                                class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gold-500/90 text-brand-950 text-sm font-bold uppercase tracking-wider hover:bg-gold-400 transition-colors"
-                            >
-                                {email}
-                            </a>
-                            <a
-                                href="/contact"
-                                class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-primary-400/20 text-primary-200 text-sm font-bold uppercase tracking-wider hover:border-gold-400/40 hover:text-gold-300 transition-colors"
-                            >
-                                Contact page
-                            </a>
+                        <div class="flex flex-col gap-3 sm:flex-row">
+                            <a href={`mailto:${email}`} class="btn-primary">{email}</a>
+                            <a href="/contact" class="btn-outline">Contact page</a>
                         </div>
                     </section>
                 </div>

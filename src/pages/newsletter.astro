@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+
+const benefits = [
+    {
+        title: 'Practical, not performative',
+        description:
+            'Each letter focuses on one idea you can apply within the week — habits, frameworks, and decisions that compound over time.',
+    },
+    {
+        title: 'Written with discipline',
+        description:
+            'No clickbait, no outrage, no filler. We respect your time and attention the same way we expect you to respect your own.',
+    },
+    {
+        title: 'Grounded in purpose',
+        description:
+            'Health, deen, capability, and responsibility are treated as one integrated life — not separate pursuits competing for your energy.',
+    },
+];
+
+const topics = [
+    'Health & fitness fundamentals',
+    'Discipline & habit formation',
+    'Faith applied to modern life',
+    'Career, finance & long-term thinking',
+    'Relationships, family & leadership',
+    'Skills, technology & self-development',
+];
+---
+
+<BaseLayout
+    title="Newsletter"
+    description="Subscribe to The Capable Muslim newsletter — one thoughtful letter each week on health, discipline, faith, and capability."
+>
+    <section class="section-padding-sm border-b border-gold/10 bg-bronze-950">
+        <div class="container-content">
+            <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+                <div>
+                    <p class="eyebrow mb-3">Newsletter</p>
+                    <h1 class="font-display text-3xl text-parchment sm:text-4xl">
+                        One letter. Once a week. Worth reading.
+                    </h1>
+                    <p class="mt-4 text-base leading-relaxed text-parchment-300">
+                        Practical ideas on becoming healthier, stronger, wiser, and more capable —
+                        delivered without hype, noise, or filler.
+                    </p>
+                    <p class="mt-4 text-sm leading-relaxed text-parchment-400">
+                        Each edition draws from the same ten domains of capability — health, deen,
+                        discipline, relationships, and long-term growth — integrated into one
+                        letter you can read in minutes and apply through the week.
+                    </p>
+                </div>
+
+                <div id="subscribe" class="card p-6 sm:p-8">
+                    <p class="mb-4 font-display text-lg text-parchment">Subscribe</p>
+                    <form class="flex flex-col gap-3" action="#" method="post">
+                        <label for="nl-email" class="text-xs font-semibold uppercase tracking-wider text-gold">
+                            Email address
+                        </label>
+                        <input
+                            type="email"
+                            id="nl-email"
+                            name="email"
+                            required
+                            placeholder="you@example.com"
+                            class="input-field"
+                        />
+                        <button type="submit" class="btn-primary w-full sm:w-auto">Subscribe</button>
+                    </form>
+                    <p class="mt-4 text-xs leading-relaxed text-parchment-400">
+                        Free forever. Unsubscribe with one click. We never share your email.
+                        <a href="/privacy-policy" class="text-gold hover:underline">Privacy policy</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding-sm section-surface border-b border-gold/10">
+        <div class="container-content">
+            <SectionHeader
+                label="What to expect"
+                title="A letter built for men who take life seriously"
+                class="mb-8"
+            />
+
+            <div class="grid gap-4 sm:grid-cols-3">
+                {
+                    benefits.map((item) => (
+                        <article class="card p-5">
+                            <h3 class="font-display text-base text-parchment">{item.title}</h3>
+                            <p class="mt-2 text-sm leading-relaxed text-parchment-300">
+                                {item.description}
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding-sm section-surface-alt">
+        <div class="container-content">
+            <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+                <SectionHeader
+                    label="Topics"
+                    title="What we write about"
+                    description="Every letter draws from the same ten domains of capability — integrated, not isolated."
+                />
+                <ul class="grid gap-2.5 sm:grid-cols-2">
+                    {
+                        topics.map((topic) => (
+                            <li class="flex items-start gap-2.5 text-sm text-parchment-300">
+                                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                                {topic}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

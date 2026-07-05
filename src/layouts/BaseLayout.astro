@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Search from "../components/Search";
 import Navigation from "../components/Navigation";
 import { siteConfig } from "../data/site";
-import { pillarsData } from "../data/pillars";
+import { navLinks, articleCategories, footerCategories, footerCompanyLinks } from "../data/landing";
 
 interface Props {
 	title: string;
@@ -19,71 +19,67 @@ const { name: siteName, logo, social } = siteConfig;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href={logo.icon} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href={logo.icon} />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:title" content={`${title} | ${siteName}`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
 
 		<title>{title} | {siteName}</title>
 	</head>
-	<body
-		class="selection:bg-gold-500/20 selection:text-primary-100 bg-brand-950"
-	>
-		<header
-			class="fixed top-0 left-0 right-0 z-50 bg-brand-950/95 backdrop-blur-md border-b border-gold-500/15"
+	<body class="bg-bronze-950 text-parchment-200">
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-bronze-950"
 		>
-			<div class="flex items-center h-20 px-6">
-				<a href="/" class="block group flex-shrink-0">
+			Skip to content
+		</a>
+
+		<header
+			id="site-header"
+			class="fixed left-0 right-0 top-0 z-50 border-b border-gold/15 bg-bronze-950/95 backdrop-blur-md transition-shadow duration-200"
+		>
+			<div class="container-content flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
+				<a href="/" class="flex shrink-0 items-center gap-3" aria-label={`${siteName} home`}>
 					<img
 						src={logo.nav}
-						alt={siteName}
-						class="h-14 w-auto object-contain"
+						alt=""
+						class="h-9 w-auto object-contain lg:h-10"
+						width="120"
+						height="40"
 					/>
 				</a>
 
-				<div class="flex-1 min-w-[3rem]"></div>
-
-				<div class="flex-shrink-0">
+				<div class="hidden flex-1 justify-center lg:flex">
 					<Navigation client:load />
 				</div>
 
-				<div class="flex-1 min-w-[3rem]"></div>
-
-				<div class="flex items-center space-x-4 flex-shrink-0">
-					<div class="hidden md:block">
-						<Search client:load />
+				<div class="flex items-center gap-2">
+					<div class="hidden sm:block">
+						<Search client:load variant="icon" />
 					</div>
 
 					<button
 						id="mobile-menu-btn"
-						class="xl:hidden p-2 text-gray-400 hover:text-white transition-colors"
+						type="button"
+						class="flex h-10 w-10 items-center justify-center rounded text-parchment-300 transition-colors hover:bg-gold/10 hover:text-parchment lg:hidden"
+						aria-label="Open menu"
+						aria-expanded="false"
+						aria-controls="mobile-menu"
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="28"
-							height="28"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							><line x1="3" y1="12" x2="21" y2="12"></line><line
-								x1="3"
-								y1="6"
-								x2="21"
-								y2="6"></line><line
-								x1="3"
-								y1="18"
-								x2="21"
-								y2="18"></line></svg
-						>
+						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<line x1="3" y1="12" x2="21" y2="12"></line>
+							<line x1="3" y1="6" x2="21" y2="6"></line>
+							<line x1="3" y1="18" x2="21" y2="18"></line>
+						</svg>
 					</button>
 				</div>
 			</div>
@@ -91,294 +87,196 @@ const { name: siteName, logo, social } = siteConfig;
 
 		<div
 			id="mobile-menu"
-			class="fixed inset-0 z-40 bg-brand-950 transform translate-x-full transition-transform duration-300 pt-24 pb-10 px-6 overflow-y-auto xl:hidden flex flex-col"
+			class="fixed inset-0 z-40 flex translate-x-full flex-col bg-bronze-950 pt-20 transition-transform duration-300 lg:hidden"
+			aria-hidden="true"
 		>
-			<div class="mb-8 md:hidden">
+			<div class="border-b border-gold/10 px-5 pb-5">
 				<Search client:load variant="mobile" />
 			</div>
-			<nav class="flex flex-col space-y-6 mb-10">
-				{
-					pillarsData.map((pillar) => (
-						<a
-							href={pillar.slug === "bookshelf" ? "/bookshelf" : `/pillars/${pillar.slug}`}
-							class="text-2xl font-black text-white hover:text-gold-300 uppercase tracking-tighter border-b border-primary-400/10 pb-4"
-						>
-							{pillar.name}
-						</a>
-					))
-				}
+			<nav class="flex-1 overflow-y-auto px-5 py-6" aria-label="Mobile navigation">
+				<ul class="space-y-1">
+					{
+						navLinks.map((link) =>
+							link.dropdown === 'articles' ? (
+								<li>
+									<details class="group">
+										<summary class="flex cursor-pointer list-none items-center justify-between rounded px-3 py-3 text-lg font-medium text-parchment-300 transition-colors hover:bg-gold/10 hover:text-parchment [&::-webkit-details-marker]:hidden">
+											{link.label}
+											<svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+											</svg>
+										</summary>
+										<ul class="mb-2 ml-3 space-y-1 border-l border-gold/10 pl-4">
+											<li>
+												<a href="/posts" class="block rounded px-2 py-2 text-sm font-semibold text-gold">
+													All Articles
+												</a>
+											</li>
+											{articleCategories.map((category) => (
+												<li>
+													<details class="group/cat">
+														<summary class="flex cursor-pointer list-none items-center justify-between rounded px-2 py-2 text-sm text-parchment-300 transition-colors hover:text-parchment [&::-webkit-details-marker]:hidden">
+															{category.name}
+															<svg class="h-3 w-3 transition-transform group-open/cat:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+																<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+															</svg>
+														</summary>
+														<ul class="ml-3 space-y-0.5 border-l border-gold/10 py-1 pl-3">
+															{category.subpillars.map((sub) => (
+																<li>
+																	<a href={sub.href} class="block rounded px-2 py-1.5 text-xs text-parchment-400 transition-colors hover:text-gold">
+																		{sub.label}
+																	</a>
+																</li>
+															))}
+														</ul>
+													</details>
+												</li>
+											))}
+										</ul>
+									</details>
+								</li>
+							) : (
+								<li>
+									<a
+										href={link.href}
+										class="block rounded px-3 py-3 text-lg font-medium text-parchment-300 transition-colors hover:bg-gold/10 hover:text-parchment"
+									>
+										{link.label}
+									</a>
+								</li>
+							),
+						)
+					}
+				</ul>
 			</nav>
-			<div class="mt-auto space-y-4">
-				<a
-					href="/about"
-					class="block text-gray-400 font-bold uppercase tracking-widest text-sm"
-					>About</a
-				>
-				<a
-					href="/contact"
-					class="block text-gray-400 font-bold uppercase tracking-widest text-sm"
-					>Contact</a
-				>
-				<a
-					href="/faq"
-					class="block text-gray-400 font-bold uppercase tracking-widest text-sm"
-					>FAQ</a
-				>
-			</div>
 		</div>
 
-		<main class="pt-20">
+		<main id="main-content" class="pt-16 lg:pt-[4.5rem]">
 			<slot />
 		</main>
 
-		<footer
-			class="bg-brand-950 border-t border-gold-500/15 pt-20 pb-10 mt-20 text-gray-400"
-		>
-			<div class="container mx-auto px-6">
-				<div
-					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-12 mb-16"
-				>
-					<div class="flex flex-col flex-shrink-0">
-						<h4
-							class="font-extrabold text-sm uppercase tracking-wider text-white mb-4"
-						>
-							{siteName}
-						</h4>
-						<p
-							class="text-sm leading-relaxed text-gray-500 font-medium text-justify"
-						>
+		<footer class="border-t border-gold/10 bg-bronze-950 text-parchment-300">
+			<div class="container-content section-padding pb-10">
+				<div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+					<div class="lg:col-span-5">
+						<p class="font-display text-xl text-parchment">{siteName}</p>
+						<p class="mt-4 max-w-sm text-justify text-sm leading-relaxed text-parchment-400">
 							{siteConfig.footerTagline}
 						</p>
 					</div>
 
-					<div
-						class="flex flex-col items-center xl:items-start text-center xl:text-left"
-					>
-						<h4
-							class="font-extrabold text-sm uppercase tracking-wider text-white mb-6"
-						>
-							Pillars
+					<div class="lg:col-span-3">
+						<h4 class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+							Categories
 						</h4>
-						<div
-							class="grid grid-cols-3 xl:grid-cols-2 gap-x-6 gap-y-3"
-						>
+						<ul class="grid grid-cols-2 gap-x-4 gap-y-2.5">
 							{
-								pillarsData.map((pillar) => (
-									<a
-										href={pillar.slug === "bookshelf" ? "/bookshelf" : `/pillars/${pillar.slug}`}
-										class="text-xs font-bold text-gray-500 hover:text-gold-300 uppercase tracking-wide transition-colors"
-									>
-										{pillar.name.charAt(0) + pillar.name.slice(1).toLowerCase()}
-									</a>
+								footerCategories.map((cat) => (
+									<li>
+										<a href={cat.href} class="text-sm text-parchment-400 transition-colors hover:text-parchment">
+											{cat.label}
+										</a>
+									</li>
 								))
 							}
-						</div>
-					</div>
-
-					<div
-						class="flex flex-col items-center xl:items-start text-center xl:text-left"
-					>
-						<h4
-							class="font-extrabold mb-6 text-sm uppercase tracking-wider text-white"
-						>
-							Company
-						</h4>
-						<ul class="space-y-4">
-							<li>
-								<a
-									href="/about"
-									class="text-xs hover:text-primary-500 uppercase tracking-widest font-bold text-gray-500 transition-colors"
-									>About</a
-								>
-							</li>
-							<li>
-								<a
-									href="/contact"
-									class="text-xs hover:text-primary-500 uppercase tracking-widest font-bold text-gray-500 transition-colors"
-									>Contact</a
-								>
-							</li>
-							<li>
-								<a
-									href="/faq"
-									class="text-xs hover:text-primary-500 uppercase tracking-widest font-bold text-gray-500 transition-colors"
-									>FAQ</a
-								>
-							</li>
-							<li>
-								<a
-									href="/privacy-policy"
-									class="text-xs hover:text-primary-500 uppercase tracking-widest font-bold text-gray-500 transition-colors"
-									>Privacy Policy</a
-								>
-							</li>
 						</ul>
 					</div>
 
-					<div
-						class="flex flex-col items-center xl:items-start text-center xl:text-left"
-					>
-						<h4
-							class="font-extrabold mb-6 text-sm uppercase tracking-wider text-white"
-						>
-							Socials
+					<div class="lg:col-span-2">
+						<h4 class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+							Company
 						</h4>
-						<div
-							class="grid grid-cols-2 gap-6 place-items-center xl:place-items-start"
-						>
-							<a
-								href={social.instagram}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-									></path></svg
-								>
-							</a>
-							<a
-								href={social.youtube}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-									></path></svg
-								>
-							</a>
-							<a
-								href={social.tiktok}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
-									></path></svg
-								>
-							</a>
-							<a
-								href={social.x}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-									></path></svg
-								>
-							</a>
-							<a
-								href={social.threads}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142l-.126 1.974a11.881 11.881 0 0 0-2.588-.122c-1.066.061-1.94.38-2.6.948-.699.602-1.05 1.394-1.014 2.289.033.818.425 1.504 1.105 1.935.563.357 1.305.538 2.144.524 1.237-.067 2.162-.522 2.75-1.352.588-.83.867-1.948.83-3.324v-.142c-.01-.255-.017-.509-.02-.762.006-1.975.222-3.65.642-4.98.444-1.408 1.185-2.471 2.204-3.163.906-.615 2.007-.927 3.27-.927.66 0 1.35.1 2.05.297l-.464 1.938a5.617 5.617 0 0 0-1.586-.231c-.923 0-1.697.216-2.301.643-.678.48-1.227 1.291-1.632 2.413-.38 1.053-.573 2.339-.573 3.824 0 .13.003.26.01.39.006.13.015.26.026.39.885.64 1.483 1.485 1.778 2.513.638 2.221.367 4.684-1.748 6.862-1.81 1.865-4.088 2.742-7.17 2.767z"
-									></path></svg
-								>
-							</a>
-							<a
-								href={social.pinterest}
-								target="_blank"
-								class="text-gray-500 hover:text-white transition-colors"
-							>
-								<svg
-									class="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									><path
-										d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"
-									></path></svg
-								>
-							</a>
-						</div>
+						<ul class="space-y-2.5">
+							{
+								footerCompanyLinks.map((link) => (
+									<li>
+										<a href={link.href} class="text-sm text-parchment-400 transition-colors hover:text-parchment">
+											{link.label}
+										</a>
+									</li>
+								))
+							}
+						</ul>
 					</div>
 
-					<div
-						class="flex flex-col items-center xl:items-start text-center xl:text-left"
-					>
-						<h4
-							class="font-extrabold mb-6 text-sm uppercase tracking-wider text-white"
-						>
-							Stay Updated
+					<div class="lg:col-span-2">
+						<h4 class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+							Connect
 						</h4>
-						<p class="text-xs text-gray-500 mb-4 leading-relaxed">
-							Join Muslims who apply clear systems and build strong
-							habits weekly. No filler, no hype — just disciplined
-							execution rooted in faith.
+						<div class="flex flex-wrap gap-4">
+							<a href={social.instagram} target="_blank" rel="noopener noreferrer" class="text-parchment-400 transition-colors hover:text-gold" aria-label="Instagram">
+								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+							</a>
+							<a href={social.youtube} target="_blank" rel="noopener noreferrer" class="text-parchment-400 transition-colors hover:text-gold" aria-label="YouTube">
+								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+							</a>
+							<a href={social.tiktok} target="_blank" rel="noopener noreferrer" class="text-parchment-400 transition-colors hover:text-gold" aria-label="TikTok">
+								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+							</a>
+							<a href={social.x} target="_blank" rel="noopener noreferrer" class="text-parchment-400 transition-colors hover:text-gold" aria-label="X">
+								<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+							</a>
+						</div>
+
+						<p class="mt-6 text-sm">
+							<a href={`mailto:${siteConfig.email}`} class="text-parchment-400 transition-colors hover:text-gold">
+								{siteConfig.email}
+							</a>
 						</p>
-						<form class="flex flex-col space-y-3 w-full">
-							<input
-								type="email"
-								placeholder="Email Address"
-								class="px-4 py-3 rounded-lg border border-gray-800 bg-white/5 text-white focus:outline-none focus:bg-white/10 focus:border-primary-500 transition-all text-xs font-bold tracking-wider uppercase placeholder:text-gray-600 w-full"
-							/>
-							<button
-								type="submit"
-								class="btn-primary w-full py-3 text-xs uppercase tracking-widest"
-								>Subscribe</button
-							>
-						</form>
 					</div>
 				</div>
 
-				<div
-					class="border-t border-gray-800 pt-8 flex flex-col items-center text-center space-y-2"
-				>
-					<p
-						class="text-sm font-extrabold uppercase tracking-[0.2em] text-white"
-					>
-						{siteName}
+				<div class="mt-12 h-px w-full bg-gold/10"></div>
+
+				<div class="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+					<p class="text-xs text-parchment">
+						&copy; {new Date().getFullYear()} {siteName}. All rights reserved.
 					</p>
-					<p
-						class="text-[10px] font-extrabold uppercase tracking-widest text-gray-600"
-					>
-						Copyright © 2026 All Rights Reserved
-					</p>
+					<a href="/privacy-policy" class="text-xs text-parchment transition-colors hover:text-gold">
+						Privacy Policy
+					</a>
 				</div>
 			</div>
 		</footer>
 
 		<script>
-			const btn = document.getElementById("mobile-menu-btn");
-			const menu = document.getElementById("mobile-menu");
+			const btn = document.getElementById('mobile-menu-btn');
+			const menu = document.getElementById('mobile-menu');
+			const header = document.getElementById('site-header');
 			let isMenuOpen = false;
 
+			const menuIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+			const closeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
 			if (btn && menu) {
-				btn.addEventListener("click", () => {
+				btn.addEventListener('click', () => {
 					isMenuOpen = !isMenuOpen;
 					if (isMenuOpen) {
-						menu.classList.remove("translate-x-full");
-						btn.innerHTML =
-							'<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-						document.body.style.overflow = "hidden";
+						menu.classList.remove('translate-x-full');
+						menu.setAttribute('aria-hidden', 'false');
+						btn.setAttribute('aria-expanded', 'true');
+						btn.setAttribute('aria-label', 'Close menu');
+						btn.innerHTML = closeIcon;
+						document.body.style.overflow = 'hidden';
 					} else {
-						menu.classList.add("translate-x-full");
-						btn.innerHTML =
-							'<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-						document.body.style.overflow = "";
+						menu.classList.add('translate-x-full');
+						menu.setAttribute('aria-hidden', 'true');
+						btn.setAttribute('aria-expanded', 'false');
+						btn.setAttribute('aria-label', 'Open menu');
+						btn.innerHTML = menuIcon;
+						document.body.style.overflow = '';
 					}
 				});
 			}
+
+			window.addEventListener(
+				'scroll',
+				() => {
+					if (header) header.classList.toggle('shadow-subtle', window.scrollY > 10);
+				},
+				{ passive: true },
+			);
 		</script>
 	</body>
 </html>
