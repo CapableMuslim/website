@@ -27,9 +27,6 @@ export default function SearchPage() {
         return searchEntries(index, query);
     }, [index, query]);
 
-    const articles = results.filter((item) => item.type === 'article');
-    const pages = results.filter((item) => item.type === 'page');
-
     const updateUrl = (value: string) => {
         const url = new URL(window.location.href);
         if (value.trim()) {
@@ -42,16 +39,19 @@ export default function SearchPage() {
 
     return (
         <section className="py-16 lg:py-24 bg-gold-900 min-h-[70vh]">
-            <div className="container mx-auto px-6 max-w-4xl">
+            <div className="container mx-auto px-6 max-w-3xl">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl lg:text-5xl font-extrabold text-primary-50 uppercase tracking-tight mb-4">
                         Search
                     </h1>
+                    <p className="text-stone-400 max-w-2xl mx-auto">
+                        Find articles across all pillars.
+                    </p>
                     {query.trim().length >= 2 && !loading && (
-                        <p className="text-stone-400 max-w-2xl mx-auto">
+                        <p className="text-stone-400 max-w-2xl mx-auto mt-3">
                             {results.length > 0
-                                ? `${results.length} result${results.length === 1 ? '' : 's'} for "${query.trim()}"`
-                                : `No results for "${query.trim()}"`}
+                                ? `${results.length} article${results.length === 1 ? '' : 's'} for "${query.trim()}"`
+                                : `No articles for "${query.trim()}"`}
                         </p>
                     )}
                 </div>
@@ -64,7 +64,7 @@ export default function SearchPage() {
                             setQuery(e.target.value);
                             updateUrl(e.target.value);
                         }}
-                        placeholder="Search..."
+                        placeholder="Search articles..."
                         className="w-full bg-brand-900/78 border border-primary-400/20 rounded-2xl py-4 px-5 pl-12 text-base focus:outline-none focus:ring-2 focus:ring-gold-400/30 focus:border-gold-400/40 transition-all placeholder:text-primary-600 text-primary-100"
                         autoFocus
                     />
@@ -82,60 +82,44 @@ export default function SearchPage() {
                 {loading && <p className="text-center text-stone-500">Loading search index...</p>}
 
                 {!loading && query.trim().length < 2 && (
-                    <p className="text-center text-stone-500">Type at least 2 characters to search.</p>
+                    <p className="text-center text-stone-500">Type at least 2 characters to search articles.</p>
                 )}
 
                 {!loading && query.trim().length >= 2 && results.length === 0 && (
                     <div className="text-center py-16 border border-dashed border-brand-700/60 rounded-2xl">
-                        <p className="text-stone-300 font-bold mb-2">No results for "{query.trim()}"</p>
+                        <p className="text-stone-300 font-bold mb-2">No articles for "{query.trim()}"</p>
                         <p className="text-stone-500 text-sm">Try different keywords or browse articles from the homepage.</p>
                     </div>
                 )}
 
-                {!loading && articles.length > 0 && (
-                    <div className="mb-12">
-                        <h2 className="text-sm font-bold uppercase tracking-wider text-gold-400 mb-4">
-                            Articles ({articles.length})
-                        </h2>
-                        <div className="space-y-3">
-                            {articles.map((result) => (
+                {!loading && results.length > 0 && (
+                    <ul className="space-y-3">
+                        {results.map((result) => (
+                            <li key={result.url}>
                                 <a
-                                    key={result.url}
                                     href={result.url}
                                     className="block bg-brand-900/65 border border-primary-400/10 hover:border-gold-400/30 rounded-xl p-5 transition-all hover:bg-brand-900/72"
                                 >
-                                    {result.pillar && (
-                                        <span className="inline-block px-2 py-0.5 bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider rounded mb-2">
-                                            {result.pillar}
-                                        </span>
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                        {result.pillar && (
+                                            <span className="inline-block px-2 py-0.5 bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider rounded">
+                                                {result.pillar}
+                                            </span>
+                                        )}
+                                        {result.subpillar && (
+                                            <span className="inline-block px-2 py-0.5 bg-primary-400/10 text-primary-300 text-[10px] font-bold uppercase tracking-wider rounded">
+                                                {result.subpillar}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <h2 className="text-lg font-bold text-primary-50 mb-1">{result.title}</h2>
+                                    {result.description && (
+                                        <p className="text-sm text-primary-400 leading-relaxed">{result.description}</p>
                                     )}
-                                    <h3 className="text-lg font-bold text-primary-50">{result.title}</h3>
                                 </a>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {!loading && pages.length > 0 && (
-                    <div>
-                        <h2 className="text-sm font-bold uppercase tracking-wider text-primary-300 mb-4">
-                            Pages ({pages.length})
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {pages.map((result) => (
-                                <a
-                                    key={result.url}
-                                    href={result.url}
-                                    className="block bg-brand-900/40 border border-primary-400/10 hover:border-primary-400/30 rounded-xl p-4 transition-all"
-                                >
-                                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary-400 block mb-1">
-                                        {result.category}
-                                    </span>
-                                    <h3 className="text-base font-bold text-primary-50">{result.title}</h3>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
+                            </li>
+                        ))}
+                    </ul>
                 )}
             </div>
         </section>

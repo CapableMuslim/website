@@ -1,5 +1,3 @@
-import type { IFuseOptions } from 'fuse.js';
-
 export type SearchEntry = {
     title: string;
     description: string;
@@ -12,59 +10,49 @@ export type SearchEntry = {
     content: string;
 };
 
-export const fuseSearchOptions: IFuseOptions<SearchEntry> = {
-    keys: [
-        { name: 'title', weight: 0.5 },
-        { name: 'description', weight: 0.3 },
-        { name: 'pillar', weight: 0.1 },
-        { name: 'subpillar', weight: 0.1 },
-    ],
-    threshold: 0.2,
-    ignoreLocation: true,
-    minMatchCharLength: 2,
-    includeScore: true,
-};
+type MatchRank = 0 | 1 | 2 | 3;
 
 function escapeRegex(value: string): string {
     return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function matchesMetadata(entry: SearchEntry, query: string): boolean {
-    const haystacks = [
-        entry.title,
-        entry.description,
-        entry.pillar,
-        entry.subpillar,
-        entry.category,
-    ];
-
-    return haystacks.some((value) => value.toLowerCase().includes(query));
+function containsQuery(value: string, query: string): boolean {
+    return value.toLowerCase().includes(query);
 }
 
-function matchesContentWord(entry: SearchEntry, query: string): boolean {
-    if (!entry.content) return false;
+function containsWord(value: string, query: string): boolean {
+    if (!value) return false;
     const pattern = new RegExp(`\\b${escapeRegex(query)}\\b`, 'i');
-    return pattern.test(entry.content);
+    return pattern.test(value);
+}
+
+function getMatchRank(entry: SearchEntry, query: string): MatchRank | null {
+    if (containsQuery(entry.title, query)) return 0;
+    if (containsQuery(entry.description, query)) return 1;
+    if (containsQuery(entry.pillar, query) || containsQuery(entry.subpillar, query)) return 2;
+    if (containsWord(entry.content, query)) return 3;
+    return null;
 }
 
 export function searchEntries(index: SearchEntry[], rawQuery: string): SearchEntry[] {
     const query = rawQuery.trim().toLowerCase();
-    if (query.length < 2) return [];
+    if (query.length < 2 || index.length === 0) return [];
 
-    const directMatches = index.filter((entry) => matchesMetadata(entry, query));
-    if (directMatches.length > 0) {
-        return directMatches;
-    }
+    const ranked = index
+        .map((entry) => ({ entry, rank: getMatchRank(entry, query) }))
+        .filter((item): item is { entry: SearchEntry; rank: MatchRank } => item.rank !== null)
+        .sort((a, b) => a.rank - b.rank || a.entry.title.localeCompare(b.entry.title));
 
-    const contentMatches = index.filter((entry) => matchesContentWord(entry, query));
-    if (contentMatches.length > 0) {
-        return contentMatches;
-    }
-
-    return [];
+    return ranked.map((item) => item.entry);
 }
 
 export function getQueryFromUrl(): string {
     if (typeof window === 'undefined') return '';
     return new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
+}
+
+export function buildSearchPageUrl(query: string): string {
+    const trimmed = query.trim();
+    if (!trimmed) return '/search';
+    return `/search?q=${encodeURIComponent(trimmed)}`;
 }
