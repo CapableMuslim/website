@@ -1,0 +1,31 @@
+---
+import { formatDate } from '../../lib/posts';
+
+interface Props {
+    category: string;
+    title: string;
+    subtitle?: string;
+    readingTime: number;
+    pubDate?: Date;
+}
+
+const { category, title, subtitle, readingTime, pubDate } = Astro.props;
+const formattedDate = pubDate ? formatDate(pubDate) : null;
+---
+
+<header class="article-header">
+    <p class="article-header__category">{category}</p>
+    <h1 class="article-header__title">{title}</h1>
+    {subtitle && <p class="article-header__subtitle">{subtitle}</p>}
+    <div class="article-header__meta">
+        <span class="article-header__reading-time">{readingTime} min read</span>
+        {formattedDate && (
+            <>
+                <span class="article-header__meta-sep" aria-hidden="true">·</span>
+                <time datetime={pubDate!.toISOString()} class="article-header__date">
+                    {formattedDate}
+                </time>
+            </>
+        )}
+    </div>
+</header>

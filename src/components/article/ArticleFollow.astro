@@ -1,0 +1,29 @@
+---
+import PlatformIcon from '../community/PlatformIcon.astro';
+import { connectPlatforms } from '../../data/community';
+
+const articleFollowPlatforms = connectPlatforms.filter(
+    (platform) => platform.id !== 'medium' && platform.id !== 'snapchat',
+);
+---
+
+<aside class="article-follow" aria-label="Follow The Capable Muslim">
+    <h2 class="article-follow__title">Follow The Capable Muslim</h2>
+    <ul class="article-follow__grid">
+        {
+            articleFollowPlatforms.map((platform) => (
+                <li>
+                    <a
+                        href={platform.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="article-follow__link"
+                        aria-label={platform.name}
+                    >
+                        <PlatformIcon id={platform.id} class="h-4 w-4" />
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</aside>

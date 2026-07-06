@@ -1,0 +1,458 @@
+/* Article page — knowledge-base reading system */
+
+/* ── Layout grid ─────────────────────────────────────────────── */
+
+.article-page {
+    @apply pb-16 sm:pb-20 lg:pb-24;
+}
+
+/* ── Hero banner (full-width, title overlaid on image) ───────── */
+
+.article-hero {
+    @apply relative h-[50vh] min-h-[320px] w-full overflow-hidden lg:h-[60vh] lg:min-h-[400px];
+}
+
+.article-hero__image {
+    @apply absolute inset-0 h-full w-full object-cover;
+}
+
+.article-hero__gradient {
+    @apply absolute inset-0 bg-gradient-to-b from-bronze-950/30 via-bronze-950/50 to-bronze-950;
+}
+
+.article-hero__content {
+    @apply absolute inset-x-0 bottom-0 pb-10 sm:pb-12 lg:pb-16;
+}
+
+.article-hero__inner {
+    @apply w-full;
+}
+
+.article-hero__badges {
+    @apply mb-4 flex flex-wrap items-center gap-3;
+}
+
+.article-hero__badge {
+    @apply rounded px-3 py-1 text-xs font-extrabold uppercase tracking-wider;
+}
+
+.article-hero__badge--pillar {
+    @apply bg-gold text-bronze-950;
+}
+
+.article-hero__badge--sub {
+    @apply border border-parchment-400/20 bg-bronze-950/40 text-parchment backdrop-blur-sm;
+}
+
+.article-hero__badge-sep {
+    @apply text-sm text-parchment-300;
+}
+
+.article-hero__title {
+    @apply font-display text-3xl font-black uppercase leading-[1.1] tracking-tight text-parchment sm:text-4xl lg:text-5xl;
+}
+
+.article-hero__subtitle {
+    @apply mt-4 max-w-3xl text-lg leading-relaxed text-parchment-100 lg:text-xl;
+}
+
+.article-hero__meta {
+    @apply mt-5 flex flex-wrap items-center gap-2 text-sm text-parchment-300;
+}
+
+.article-hero__meta-sep {
+    @apply text-parchment-400;
+}
+
+.article-grid {
+    @apply grid w-full items-start gap-x-8 gap-y-6 pt-10 sm:pt-12;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1536px) {
+    .article-grid {
+        grid-template-columns: 11.5rem minmax(0, 1fr);
+    }
+}
+
+/* ── Sidebars ────────────────────────────────────────────────── */
+
+.article-sidebar {
+    @apply hidden;
+}
+
+.article-sidebar--left {
+    @apply hidden 2xl:block;
+    position: sticky;
+    top: 6.5rem;
+    align-self: start;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+}
+
+.article-sidebar__inner {
+    @apply flex flex-col gap-5;
+}
+
+/* ── Mobile TOC dropdown ─────────────────────────────────────── */
+
+.article-mobile-toc {
+    @apply mb-6 w-full 2xl:hidden;
+}
+
+.article-mobile-toc__details {
+    @apply rounded-lg border border-gold/15 bg-bronze-900/60;
+}
+
+.article-mobile-toc__summary {
+    @apply flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-parchment transition-colors hover:text-gold [&::-webkit-details-marker]:hidden;
+}
+
+.article-mobile-toc__body {
+    @apply border-t border-gold/10 px-4 py-3;
+}
+
+/* ── TOC navigation ──────────────────────────────────────────── */
+
+.article-toc {
+    @apply rounded-lg border border-gold/10 bg-bronze-900/50 p-4;
+}
+
+.article-toc--compact .article-toc__list {
+    @apply max-h-[28vh] overflow-y-auto;
+}
+
+.article-toc__title {
+    @apply mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold;
+}
+
+.article-toc__list {
+    @apply space-y-1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-toc__item--nested {
+    @apply pl-3;
+}
+
+.article-toc__link {
+    @apply block rounded px-2 py-1 text-xs leading-snug text-parchment-400 transition-colors hover:text-parchment;
+}
+
+.article-toc__link.is-active {
+    @apply border-l-2 border-gold bg-gold/10 pl-[calc(0.5rem-2px)] font-medium text-gold;
+}
+
+/* ── Follow box ──────────────────────────────────────────────── */
+
+.article-follow {
+    @apply rounded-lg border border-gold/10 bg-bronze-900/40 p-4;
+}
+
+.article-follow__title {
+    @apply mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-parchment-400;
+}
+
+.article-follow__grid {
+    @apply grid grid-cols-4 gap-1.5 sm:grid-cols-3;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-follow__link {
+    @apply flex h-9 w-full items-center justify-center rounded text-parchment-400 transition-colors hover:bg-gold/10 hover:text-gold;
+}
+
+/* ── Main reading column ───────────────────────────────────────── */
+
+.article-main {
+    @apply min-w-0;
+}
+
+/* ── Article body typography ───────────────────────────────────── */
+
+.article-content {
+    color: theme('colors.parchment.200');
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    width: 100%;
+}
+
+/* Hide duplicate H1 from markdown — title lives in header */
+.article-content > h1:first-child {
+    display: none;
+}
+
+.article-content h2 {
+    @apply font-display text-2xl font-black uppercase tracking-tight text-gold;
+    margin-top: 2.75rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
+    scroll-margin-top: 6rem;
+}
+
+.article-content h2:first-of-type {
+    margin-top: 0;
+}
+
+.article-content h3 {
+    @apply font-display text-xl font-bold text-silver;
+    margin-top: 2rem;
+    margin-bottom: 0.875rem;
+    line-height: 1.35;
+    scroll-margin-top: 6rem;
+}
+
+.article-content h4 {
+    @apply text-lg font-semibold text-parchment-300;
+    margin-top: 1.5rem;
+    margin-bottom: 0.625rem;
+    scroll-margin-top: 6rem;
+}
+
+.article-content p {
+    margin-bottom: 1.375rem;
+    color: theme('colors.parchment.200');
+    text-align: justify;
+}
+
+.article-content p + p {
+    margin-top: 0;
+}
+
+.article-content strong,
+.article-content b {
+    @apply font-semibold text-parchment;
+}
+
+.article-content a {
+    @apply font-medium text-gold underline decoration-gold/30 underline-offset-2 transition-colors hover:text-gold-300 hover:decoration-gold/60;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.375rem;
+    margin-left: 1.5rem;
+    color: theme('colors.parchment.200');
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+.article-content blockquote {
+    @apply my-8 rounded-r-lg border-l-[3px] border-gold/40 bg-bronze-900/40 px-5 py-4;
+    color: theme('colors.parchment.300');
+    text-align: justify;
+}
+
+.article-content li::marker {
+    color: theme('colors.gold.DEFAULT');
+}
+
+.article-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.article-content code {
+    @apply rounded bg-bronze-900/80 px-1.5 py-0.5 text-sm font-medium text-gold;
+}
+
+.article-content pre {
+    @apply my-8 overflow-x-auto rounded-lg border border-gold/10 bg-bronze-900/80 p-5;
+}
+
+.article-content pre code {
+    @apply bg-transparent p-0 text-parchment-200;
+}
+
+.article-content img {
+    @apply my-8 w-full rounded-lg border border-gold/10;
+    height: auto;
+}
+
+.article-content hr {
+    @apply my-10 border-0 border-t border-gold/15;
+}
+
+.article-content table {
+    @apply my-8 w-full border-collapse text-sm;
+}
+
+.article-content th,
+.article-content td {
+    @apply border border-gold/15 px-4 py-2 text-left;
+}
+
+.article-content th {
+    @apply bg-bronze-900/60 font-semibold text-parchment;
+}
+
+/* ── Callout boxes ─────────────────────────────────────────────── */
+
+.article-content .callout,
+.article-content aside[class*='callout-'] {
+    @apply my-8 rounded-lg border px-5 py-4;
+}
+
+.article-content .callout p:last-child,
+.article-content aside[class*='callout-'] p:last-child {
+    margin-bottom: 0;
+}
+
+.article-content .callout > p:first-child strong,
+.article-content .callout > strong:first-child,
+.article-content aside[class*='callout-'] > p:first-child strong {
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em];
+}
+
+.article-content .callout-key-principle,
+.article-content .callout--key-principle {
+    @apply border-gold/25 bg-gold/5;
+}
+
+.article-content .callout-key-principle > p:first-child strong,
+.article-content .callout--key-principle > p:first-child strong {
+    @apply text-gold;
+}
+
+.article-content .callout-action-step,
+.article-content .callout--action-step {
+    @apply border-parchment-400/20 bg-bronze-900/50;
+}
+
+.article-content .callout-action-step > p:first-child strong,
+.article-content .callout--action-step > p:first-child strong {
+    @apply text-parchment-300;
+}
+
+.article-content .callout-islamic-reflection,
+.article-content .callout--islamic-reflection {
+    @apply border-gold/20 bg-bronze-850/60;
+}
+
+.article-content .callout-islamic-reflection > p:first-child strong,
+.article-content .callout--islamic-reflection > p:first-child strong {
+    @apply text-gold-300;
+}
+
+.article-content .callout-practical-example,
+.article-content .callout--practical-example {
+    @apply border-silver/20 bg-bronze-900/40;
+}
+
+.article-content .callout-practical-example > p:first-child strong,
+.article-content .callout--practical-example > p:first-child strong {
+    @apply text-silver;
+}
+
+/* ── Related articles ──────────────────────────────────────────── */
+
+.article-related {
+    @apply mt-16 border-t border-gold/10 pt-12;
+}
+
+.article-related__title {
+    @apply font-display text-2xl font-extrabold uppercase tracking-tight text-parchment;
+}
+
+.article-related__grid {
+    @apply mt-8 grid grid-cols-1 gap-6 md:grid-cols-3;
+}
+
+.article-related__card {
+    @apply block h-full;
+}
+
+.article-related__card-inner {
+    @apply h-full overflow-hidden rounded-xl border border-gold/10 bg-bronze-900/50 transition-colors group-hover:border-gold/30;
+}
+
+.article-related__image-wrap {
+    @apply relative h-40 overflow-hidden;
+}
+
+.article-related__image {
+    @apply h-full w-full object-cover transition-transform duration-700 group-hover:scale-105;
+}
+
+.article-related__image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-bronze-950/80 to-transparent;
+}
+
+.article-related__body {
+    @apply p-4;
+}
+
+.article-related__card-title {
+    @apply font-display text-sm font-bold leading-snug text-parchment transition-colors group-hover:text-gold line-clamp-3;
+}
+
+/* ── Article pagination ────────────────────────────────────────── */
+
+.article-nav {
+    @apply mt-12 grid w-full grid-cols-1 gap-4 sm:grid-cols-3;
+}
+
+.article-nav__link {
+    @apply flex flex-col rounded-lg border border-gold/10 bg-bronze-900/50 p-5 transition-colors hover:border-gold/30;
+}
+
+.article-nav__link--center {
+    @apply items-center text-center;
+}
+
+.article-nav__link--next {
+    @apply sm:items-end sm:text-right;
+}
+
+.article-nav__spacer {
+    @apply hidden sm:block;
+}
+
+.article-nav__label {
+    @apply text-sm font-bold uppercase tracking-[0.12em] text-gold;
+}
+
+.article-nav__title {
+    @apply mt-3 text-xs leading-relaxed text-parchment line-clamp-2;
+}
+
+.article-nav__subtitle {
+    @apply mt-1 text-xs text-parchment;
+}
+
+.article-mobile-toc__body .article-follow {
+    @apply mt-4 border-0 bg-transparent p-0;
+}
+
+/* ── Mobile typography adjustments ─────────────────────────────── */
+
+@media (max-width: 640px) {
+    .article-content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .article-content h2 {
+        font-size: 1.5rem;
+        margin-top: 2.25rem;
+    }
+
+    .article-content h2:first-of-type {
+        margin-top: 0;
+    }
+
+    .article-content h3 {
+        font-size: 1.125rem;
+    }
+
+    .article-hero__title {
+        font-size: 1.75rem;
+    }
+}

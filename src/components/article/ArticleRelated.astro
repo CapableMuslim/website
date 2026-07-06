@@ -1,0 +1,43 @@
+---
+import type { PostCard } from '../../lib/posts';
+import { withBase } from '../../lib/paths';
+
+interface Props {
+    posts: PostCard[];
+}
+
+const { posts } = Astro.props;
+const related = posts.slice(0, 3);
+---
+
+{
+    related.length > 0 && (
+        <section class="article-related" aria-labelledby="related-articles-heading">
+            <h2 id="related-articles-heading" class="article-related__title">
+                Related Articles
+            </h2>
+            <div class="article-related__grid">
+                {
+                    related.map((post) => (
+                        <a href={withBase(`/posts/${post.slug}`)} class="article-related__card group">
+                            <article class="article-related__card-inner">
+                                <div class="article-related__image-wrap">
+                                    <img
+                                        src={post.image}
+                                        alt=""
+                                        class="article-related__image"
+                                        loading="lazy"
+                                    />
+                                    <div class="article-related__image-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="article-related__body">
+                                    <h3 class="article-related__card-title">{post.title}</h3>
+                                </div>
+                            </article>
+                        </a>
+                    ))
+                }
+            </div>
+        </section>
+    )
+}

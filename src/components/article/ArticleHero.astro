@@ -1,0 +1,60 @@
+---
+import { formatDate } from '../../lib/posts';
+
+interface Props {
+    src: string;
+    alt: string;
+    pillar?: string;
+    subpillar?: string;
+    title: string;
+    subtitle?: string;
+    readingTime: number;
+    pubDate?: Date;
+}
+
+const { src, alt, pillar, subpillar, title, subtitle, readingTime, pubDate } = Astro.props;
+const formattedDate = pubDate ? formatDate(pubDate) : null;
+---
+
+<header class="article-hero">
+    <img src={src} alt={alt} class="article-hero__image" />
+    <div class="article-hero__gradient" aria-hidden="true"></div>
+
+    <div class="article-hero__content container-content">
+        <div class="article-hero__inner">
+            {
+                (pillar || subpillar) && (
+                    <div class="article-hero__badges">
+                        {
+                            pillar && (
+                                <span class="article-hero__badge article-hero__badge--pillar">{pillar}</span>
+                            )
+                        }
+                        {pillar && subpillar && <span class="article-hero__badge-sep" aria-hidden="true">/</span>}
+                        {
+                            subpillar && (
+                                <span class="article-hero__badge article-hero__badge--sub">{subpillar}</span>
+                            )
+                        }
+                    </div>
+                )
+            }
+
+            <h1 class="article-hero__title">{title}</h1>
+
+            {subtitle && <p class="article-hero__subtitle">{subtitle}</p>}
+
+            <div class="article-hero__meta">
+                <span>{readingTime} min read</span>
+                {
+                    formattedDate && (
+                        <>
+                            <span class="article-hero__meta-sep" aria-hidden="true">·</span>
+                            <time datetime={pubDate!.toISOString()}>{formattedDate}</time>
+                        </>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</header>

@@ -58,6 +58,22 @@ export function sortPostsByDate(posts: CollectionEntry<'posts'>[]): CollectionEn
     });
 }
 
+export function getRelatedPosts(
+    allPosts: CollectionEntry<'posts'>[],
+    current: CollectionEntry<'posts'>,
+    limit = 5,
+): PostCard[] {
+    const sorted = sortPostsByDate(allPosts);
+    const samePillar = sorted.filter(
+        (p) => p.slug !== current.slug && p.data.pillar === current.data.pillar,
+    );
+    const others = sorted.filter(
+        (p) => p.slug !== current.slug && p.data.pillar !== current.data.pillar,
+    );
+    const related = [...samePillar, ...others].slice(0, Math.min(Math.max(limit, 3), 6));
+    return related.map(toPostCard);
+}
+
 export function getFeaturedPosts(
     allPosts: CollectionEntry<'posts'>[],
     featuredSlugs: string[],

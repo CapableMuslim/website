@@ -1,0 +1,14 @@
+---
+import { articleSupport } from '../../data/article';
+import { withBase } from '../../lib/paths';
+---
+
+<section class="article-support" aria-labelledby="article-support-heading">
+    <h2 id="article-support-heading" class="article-support__title">
+        {articleSupport.title}
+    </h2>
+    <p class="article-support__text">{articleSupport.description}</p>
+    <a href={withBase(articleSupport.ctaHref)} class="btn-secondary article-support__cta">
+        {articleSupport.ctaLabel}
+    </a>
+</section>

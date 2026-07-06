@@ -1,0 +1,29 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+    headings: MarkdownHeading[];
+    variant?: 'sidebar' | 'compact';
+    id?: string;
+}
+
+const { headings, variant = 'sidebar', id = 'article-toc' } = Astro.props;
+const tocHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{
+    tocHeadings.length > 0 && (
+        <nav aria-label="On this page" id={id} class:list={['article-toc', variant === 'compact' && 'article-toc--compact']}>
+            <h2 class="article-toc__title">On This Page</h2>
+            <ol class="article-toc__list">
+                {tocHeadings.map((heading) => (
+                    <li class:list={['article-toc__item', heading.depth === 3 && 'article-toc__item--nested']}>
+                        <a href={`#${heading.slug}`} class="article-toc__link" data-toc-link={heading.slug}>
+                            {heading.text}
+                        </a>
+                    </li>
+                ))}
+            </ol>
+        </nav>
+    )
+}
