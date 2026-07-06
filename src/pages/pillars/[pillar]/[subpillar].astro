@@ -4,6 +4,7 @@ import ArticleCard from '../../../components/ui/ArticleCard.astro';
 import { pillarsData } from '../../../data/pillars';
 import { getCollection } from 'astro:content';
 import { sortPostsByDate, toPostCard } from '../../../lib/posts';
+import { withBase } from '../../../lib/paths';
 
 export async function getStaticPaths() {
     const paths: {
@@ -46,7 +47,7 @@ const description = `The Capable Muslim protocols and insights on ${subpillarNam
         <div class="container-content">
             <header class="page-header">
                 <p class="eyebrow mb-3">
-                    <a href={`/pillars/${pillarData.slug}`} class="hover:text-gold-300 transition-colors">
+                    <a href={withBase(`/pillars/${pillarData.slug}`)} class="hover:text-gold-300 transition-colors">
                         {pillarData.name}
                     </a>
                 </p>

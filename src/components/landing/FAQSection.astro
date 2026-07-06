@@ -3,6 +3,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
 import FAQComponent from '../FAQ.tsx';
 import { siteConfig } from '../../data/site';
 import { getFeaturedFaqItems } from '../../data/faq';
+import { withBase } from '../../lib/paths';
 
 const featuredFaq = getFeaturedFaqItems();
 ---
@@ -20,7 +21,7 @@ const featuredFaq = getFeaturedFaqItems();
         <FAQComponent client:visible items={featuredFaq} />
 
         <p class="mt-8 text-center">
-            <a href="/faq" class="text-sm font-semibold text-gold transition-colors hover:text-gold-300">
+            <a href={withBase('/faq')} class="text-sm font-semibold text-gold transition-colors hover:text-gold-300">
                 View all questions →
             </a>
         </p>
@@ -31,7 +32,7 @@ const featuredFaq = getFeaturedFaqItems();
                 If your question is technical or relates to billing, our support team is available.
                 Please prioritize using the system first.
             </p>
-            <a href="/contact" class="btn-primary mt-6 inline-flex">Contact Support</a>
+            <a href={withBase('/contact')} class="btn-primary mt-6 inline-flex">Contact Support</a>
         </div>
     </div>
 </section>

@@ -1,5 +1,6 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
+import { withBase } from '../../lib/paths';
 ---
 
 <section class="section-padding-lg bg-bronze-900/60 text-parchment">
@@ -57,7 +58,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
                     </p>
                 </blockquote>
 
-                <a href="/about" class="btn-primary inline-flex">Learn our approach</a>
+                <a href={withBase('/about')} class="btn-primary inline-flex">Learn our approach</a>
             </div>
         </div>
     </div>

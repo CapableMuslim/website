@@ -1,5 +1,6 @@
 ---
 import type { PostCard } from '../../lib/posts';
+import { withBase } from '../../lib/paths';
 
 interface Props {
     post: PostCard;
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const { post, variant = 'default', showDescription = true, showImage = true } = Astro.props;
-const href = `/posts/${post.slug}`;
+const href = withBase(`/posts/${post.slug}`);
 const tag = post.subpillar || post.pillar;
 ---
 

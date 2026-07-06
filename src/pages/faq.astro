@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQComponent from '../components/FAQ.tsx';
 import { siteConfig } from '../data/site';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout title="FAQ">
@@ -23,7 +24,7 @@ import { siteConfig } from '../data/site';
                     If your question is technical or relates to billing, our support team is available.
                     Please prioritize using the system first.
                 </p>
-                <a href="/contact" class="btn-primary mt-6 inline-flex">Contact Support</a>
+                <a href={withBase('/contact')} class="btn-primary mt-6 inline-flex">Contact Support</a>
             </div>
         </div>
     </section>

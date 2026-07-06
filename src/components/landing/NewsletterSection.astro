@@ -1,5 +1,6 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
+import { withBase } from '../../lib/paths';
 ---
 
 <section id="newsletter" class="section-padding-sm section-surface-alt border-t border-gold/10">
@@ -12,7 +13,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
                     description="Practical ideas on health, discipline, faith, and capability. No hype, no filler — just writing worth reading."
                 />
                 <a
-                    href="/newsletter"
+                    href={withBase('/newsletter')}
                     class="mt-6 inline-flex items-center text-sm font-semibold text-gold transition-colors hover:text-gold-300"
                 >
                     Learn more about the newsletter

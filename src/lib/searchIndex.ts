@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import type { SearchEntry } from './searchConfig';
+import { withBase } from './paths';
 
 function stripMarkdown(text: string): string {
     return text
@@ -20,7 +21,7 @@ export async function buildArticleSearchIndex(): Promise<SearchEntry[]> {
         title: post.data.title,
         description: post.data.description || '',
         slug: `posts/${post.slug}`,
-        url: `/posts/${post.slug}`,
+        url: withBase(`/posts/${post.slug}`),
         type: 'article' as const,
         pillar: post.data.pillar || '',
         subpillar: post.data.subpillar || '',

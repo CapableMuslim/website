@@ -4,6 +4,7 @@ import ArticleCard from '../../../components/ui/ArticleCard.astro';
 import { pillarsData } from '../../../data/pillars';
 import { getCollection } from 'astro:content';
 import { sortPostsByDate, toPostCard } from '../../../lib/posts';
+import { withBase } from '../../../lib/paths';
 
 export async function getStaticPaths() {
     return pillarsData.map((pillar) => ({
@@ -37,7 +38,7 @@ const pageDescription = `Master your life with our ${name} protocols and guides.
                     <div class="mb-10 flex flex-wrap gap-2">
                         {subpillars.map((sub) => (
                             <a
-                                href={`/pillars/${pillarData.slug}/${sub.toLowerCase().replace(/ /g, '-')}`}
+                                href={withBase(`/pillars/${pillarData.slug}/${sub.toLowerCase().replace(/ /g, '-')}`)}
                                 class="rounded border border-gold/20 bg-bronze-950/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-parchment-300 transition-colors hover:border-gold/40 hover:text-gold"
                             >
                                 {sub}

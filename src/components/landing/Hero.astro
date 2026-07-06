@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../../data/site';
+import { withBase } from '../../lib/paths';
 ---
 
 <section class="section-padding-lg relative overflow-hidden bg-bronze-950 text-parchment">
@@ -22,8 +23,8 @@ import { siteConfig } from '../../data/site';
                     relationships, and self-development into one coherent way of living.
                 </p>
                 <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                    <a href="/posts" class="btn-primary">Explore Articles</a>
-                    <a href="/about" class="btn-inverse-outline">Start Here</a>
+                    <a href={withBase('/posts')} class="btn-primary">Explore Articles</a>
+                    <a href={withBase('/about')} class="btn-inverse-outline">Start Here</a>
                 </div>
                 <p class="mt-12 text-justify text-sm text-parchment-400">{siteConfig.tagline}</p>
             </div>

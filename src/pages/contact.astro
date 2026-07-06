@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PlatformIcon from '../components/community/PlatformIcon.astro';
 import { connectPlatforms } from '../data/community';
 import { siteConfig } from '../data/site';
+import { withBase } from '../lib/paths';
 
 const { email } = siteConfig;
 ---
@@ -25,7 +26,7 @@ const { email } = siteConfig;
                     <div class="card mb-6 p-5">
                         <h2 class="font-display text-lg text-parchment">Before You Write</h2>
                         <p class="mt-2 text-sm leading-relaxed text-parchment-300">
-                            Please review the <a href="/faq" class="font-semibold text-gold hover:text-gold-300 underline">FAQ content</a> first. We prioritize efficiency and clarity. Questions already answered in documentation may not receive a response.
+                            Please review the <a href={withBase('/faq')} class="font-semibold text-gold hover:text-gold-300 underline">FAQ content</a> first. We prioritize efficiency and clarity. Questions already answered in documentation may not receive a response.
                         </p>
                     </div>
 

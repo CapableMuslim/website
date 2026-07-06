@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
+import { withBase } from '../lib/paths';
 
 const benefits = [
     {
@@ -71,7 +72,7 @@ const topics = [
                     </form>
                     <p class="mt-4 text-xs leading-relaxed text-parchment-400">
                         Free forever. Unsubscribe with one click. We never share your email.
-                        <a href="/privacy-policy" class="text-gold hover:underline">Privacy policy</a>.
+                        <a href={withBase('/privacy-policy')} class="text-gold hover:underline">Privacy policy</a>.
                     </p>
                 </div>
             </div>

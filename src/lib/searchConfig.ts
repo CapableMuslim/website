@@ -1,3 +1,5 @@
+import { withBase } from './paths';
+
 export type SearchEntry = {
     title: string;
     description: string;
@@ -53,6 +55,6 @@ export function getQueryFromUrl(): string {
 
 export function buildSearchPageUrl(query: string): string {
     const trimmed = query.trim();
-    if (!trimmed) return '/search';
-    return `/search?q=${encodeURIComponent(trimmed)}`;
+    if (!trimmed) return withBase('/search');
+    return `${withBase('/search')}?q=${encodeURIComponent(trimmed)}`;
 }

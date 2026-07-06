@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteConfig } from '../data/site';
+import { withBase } from '../lib/paths';
 
 const { name, email } = siteConfig;
 
@@ -251,7 +252,7 @@ const sections = [
                         </p>
                         <div class="flex flex-col gap-3 sm:flex-row">
                             <a href={`mailto:${email}`} class="btn-primary">{email}</a>
-                            <a href="/contact" class="btn-outline">Contact page</a>
+                            <a href={withBase('/contact')} class="btn-outline">Contact page</a>
                         </div>
                     </section>
                 </div>

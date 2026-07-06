@@ -2,6 +2,7 @@
 import SectionHeader from '../ui/SectionHeader.astro';
 import ArticleCard from '../ui/ArticleCard.astro';
 import type { PostCard } from '../../lib/posts';
+import { withBase } from '../../lib/paths';
 
 interface Props {
     posts: PostCard[];
@@ -20,7 +21,7 @@ const { posts } = Astro.props;
                         title="Articles worth your time"
                         description="In-depth, practical writing across every domain of capability."
                     />
-                    <a href="/posts" class="btn-ghost shrink-0 self-start sm:self-auto">
+                    <a href={withBase('/posts')} class="btn-ghost shrink-0 self-start sm:self-auto">
                         View all articles
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

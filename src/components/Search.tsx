@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import type { SearchEntry } from '../lib/searchConfig';
 import { buildSearchPageUrl, searchEntries } from '../lib/searchConfig';
+import { searchIndexUrl } from '../lib/paths';
 
 const POPUP_RESULT_LIMIT = 6;
 
@@ -19,7 +20,7 @@ export default function Search({ variant = 'default' }: SearchProps) {
     const isIcon = variant === 'icon';
 
     useEffect(() => {
-        fetch('/search.json')
+        fetch(searchIndexUrl)
             .then((res) => res.json())
             .then((data: SearchEntry[]) => setIndex(data))
             .catch((err) => console.error('Failed to load search index', err));

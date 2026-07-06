@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { SearchEntry } from '../lib/searchConfig';
 import { getQueryFromUrl, searchEntries } from '../lib/searchConfig';
+import { searchIndexUrl } from '../lib/paths';
 
 export default function SearchPage() {
     const [query, setQuery] = useState('');
@@ -11,7 +12,7 @@ export default function SearchPage() {
         const urlQuery = getQueryFromUrl();
         if (urlQuery) setQuery(urlQuery);
 
-        fetch('/search.json')
+        fetch(searchIndexUrl)
             .then((res) => res.json())
             .then((data: SearchEntry[]) => {
                 setIndex(data);

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteConfig } from '../data/site';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout title="About Us">
@@ -139,7 +140,7 @@ import { siteConfig } from '../data/site';
                     Are you <span class="text-gold">capable</span> of more?
                 </h2>
                 <div class="lg:text-right">
-                    <a href="/" class="btn-primary inline-flex">Explore The Protocols</a>
+                    <a href={withBase('/')} class="btn-primary inline-flex">Explore The Protocols</a>
                 </div>
             </div>
         </div>

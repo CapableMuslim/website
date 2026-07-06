@@ -6,6 +6,7 @@ import { siteConfig } from "../data/site";
 import { navLinks, articleCategories, footerCategories, footerCompanyLinks, supportMissionLink } from "../data/landing";
 import { connectPlatforms } from "../data/community";
 import PlatformIcon from "../components/community/PlatformIcon.astro";
+import { withBase } from "../lib/paths";
 
 interface Props {
 	title: string;
@@ -22,11 +23,11 @@ const { name: siteName, logo } = siteConfig;
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-		<link rel="icon" href="/favicons/favicon.ico" />
-		<link rel="icon" type="image/png" href={logo.icon} />
+		<link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicons/favicon-32x32.png')} />
+		<link rel="icon" type="image/png" sizes="16x16" href={withBase('/favicons/favicon-16x16.png')} />
+		<link rel="apple-touch-icon" sizes="180x180" href={withBase('/favicons/apple-touch-icon.png')} />
+		<link rel="icon" href={withBase('/favicons/favicon.ico')} />
+		<link rel="icon" type="image/png" href={withBase(logo.icon)} />
 		<meta name="generator" content={Astro.generator} />
 		<meta property="og:title" content={`${title} | ${siteName}`} />
 		<meta property="og:description" content={description} />
@@ -54,9 +55,9 @@ const { name: siteName, logo } = siteConfig;
 			class="fixed left-0 right-0 top-0 z-50 border-b border-gold/15 bg-bronze-950/95 backdrop-blur-md transition-shadow duration-200"
 		>
 			<div class="container-content relative flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
-				<a href="/" class="relative z-10 flex shrink-0 items-center gap-3" aria-label={`${siteName} home`}>
+				<a href={withBase('/')} class="relative z-10 flex shrink-0 items-center gap-3" aria-label={`${siteName} home`}>
 					<img
-						src={logo.nav}
+						src={withBase(logo.nav)}
 						alt=""
 						class="h-9 w-auto object-contain lg:h-10"
 						width="120"
@@ -127,7 +128,7 @@ const { name: siteName, logo } = siteConfig;
 										</summary>
 										<ul class="mb-2 ml-3 space-y-1 border-l border-gold/10 pl-4">
 											<li>
-												<a href="/posts" class="block rounded px-2 py-2 text-sm font-semibold text-gold">
+												<a href={withBase('/posts')} class="block rounded px-2 py-2 text-sm font-semibold text-gold">
 													All Articles
 												</a>
 											</li>
@@ -253,7 +254,7 @@ const { name: siteName, logo } = siteConfig;
 					<p class="text-xs text-parchment">
 						&copy; {new Date().getFullYear()} {siteName}. All rights reserved.
 					</p>
-					<a href="/privacy-policy" class="text-xs text-parchment transition-colors hover:text-gold">
+					<a href={withBase('/privacy-policy')} class="text-xs text-parchment transition-colors hover:text-gold">
 						Privacy Policy
 					</a>
 				</div>
