@@ -1,0 +1,34 @@
+---
+import { newsletterConfig } from '../data/newsletter';
+---
+
+<div class="mt-8 max-w-sm" aria-label="Newsletter subscription">
+	<h4 class="text-xs font-semibold uppercase tracking-[0.14em] text-gold">Newsletter</h4>
+	<p class="mt-3 text-sm leading-relaxed text-parchment-400">
+		{newsletterConfig.sidebarDescription}
+	</p>
+	<form
+		class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-end"
+		action={newsletterConfig.formAction || '#'}
+		method="post"
+	>
+		<div class="flex-1">
+			<label for="footer-newsletter-email" class="sr-only">Email address</label>
+			<input
+				type="email"
+				id="footer-newsletter-email"
+				name="email"
+				required
+				placeholder="you@example.com"
+				class="input-field py-2 text-sm"
+				autocomplete="email"
+			/>
+		</div>
+		<button type="submit" class="btn-primary w-full shrink-0 px-4 py-2 text-sm sm:w-auto">
+			{newsletterConfig.submitLabel}
+		</button>
+	</form>
+	<p class="mt-2 text-[11px] leading-relaxed text-parchment-400">
+		{newsletterConfig.footnote}
+	</p>
+</div>

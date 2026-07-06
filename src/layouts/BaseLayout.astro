@@ -6,6 +6,7 @@ import { siteConfig } from "../data/site";
 import { navLinks, articleCategories, footerCategories, footerCompanyLinks, supportMissionLink } from "../data/landing";
 import { connectPlatforms } from "../data/community";
 import PlatformIcon from "../components/community/PlatformIcon.astro";
+import FooterNewsletter from "../components/FooterNewsletter.astro";
 import { withBase } from "../lib/paths";
 
 interface Props {
@@ -186,6 +187,7 @@ const { name: siteName, logo } = siteConfig;
 						<p class="mt-4 max-w-sm text-justify text-sm leading-relaxed text-parchment-400">
 							{siteConfig.footerTagline}
 						</p>
+						<FooterNewsletter />
 					</div>
 
 					<div class="text-center lg:col-span-3">
