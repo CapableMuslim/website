@@ -18,5 +18,15 @@ export const siteConfig = {
         x: 'https://x.com/CapableMuslim',
         threads: 'https://www.threads.com/@capablemuslim',
         pinterest: 'https://pinterest.com/capablemuslim/',
+        facebook: 'https://www.facebook.com/capablemuslim',
+        linkedin: 'https://www.linkedin.com/company/capablemuslim',
+        snapchat: 'https://www.snapchat.com/add/capablemuslim',
+        medium: 'https://medium.com/@capablemuslim',
+    },
+    communities: {
+        discord: 'https://discord.gg/capablemuslim',
+        telegram: 'https://t.me/capablemuslim',
+        reddit: 'https://www.reddit.com/r/capablemuslim',
+        whatsapp: 'https://chat.whatsapp.com/capablemuslim',
     },
 } as const;

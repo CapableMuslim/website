@@ -136,7 +136,7 @@
     }
 
     .nav-link {
-        @apply text-sm font-medium text-parchment-300 transition-colors hover:text-parchment;
+        @apply text-sm font-bold text-white transition-colors hover:text-gold;
     }
 
     .category-tag {

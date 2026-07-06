@@ -21,7 +21,7 @@ const tag = post.subpillar || post.pillar;
                     <span class="category-tag">{post.pillar}</span>
                     <span class="reading-time">{post.readingTime} min read</span>
                 </div>
-                <h3 class="font-display text-xl leading-snug text-parchment transition-colors group-hover:text-gold sm:text-2xl">
+                <h3 class="font-display text-xl font-bold leading-snug text-parchment transition-colors group-hover:text-gold sm:text-2xl">
                     {post.title}
                 </h3>
                 {showDescription && post.description && (
@@ -42,7 +42,7 @@ const tag = post.subpillar || post.pillar;
                     <span class="category-tag">{tag}</span>
                     <span class="reading-time">{post.readingTime} min</span>
                 </div>
-                <h3 class="font-display text-lg leading-snug text-parchment transition-colors group-hover:text-gold">
+                <h3 class="font-display text-lg font-bold leading-snug text-parchment transition-colors group-hover:text-gold">
                     {post.title}
                 </h3>
             </article>
@@ -74,7 +74,7 @@ const tag = post.subpillar || post.pillar;
                     {showImage && (
                         <span class="reading-time mb-2 block">{post.readingTime} min read</span>
                     )}
-                    <h3 class="font-display text-lg leading-snug text-parchment transition-colors group-hover:text-gold sm:text-xl">
+                    <h3 class="font-display text-lg font-bold leading-snug text-parchment transition-colors group-hover:text-gold sm:text-xl">
                         {post.title}
                     </h3>
                     {showDescription && post.description && (

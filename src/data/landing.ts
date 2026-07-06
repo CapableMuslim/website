@@ -146,12 +146,16 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
     { label: 'Articles', href: '/posts', dropdown: 'articles' },
-    { label: 'Newsletter', href: '/newsletter' },
-    { label: 'Community', href: '/about' },
-    { label: 'Donate', href: '/contact' },
-    { label: 'Contact', href: '/contact' },
     { label: 'Bookshelf', href: '/bookshelf' },
+    { label: 'Newsletter', href: '/newsletter' },
+    { label: 'Community', href: '/community' },
+    { label: 'Contact', href: '/contact' },
 ];
+
+export const supportMissionLink = {
+    label: 'Support the Mission',
+    href: '/contact',
+} as const;
 
 export type ArticleCategory = {
     name: string;

@@ -65,18 +65,16 @@ const featuredBook = {
 >
     <section class="section-padding-sm border-b border-gold/10 bg-bronze-950">
         <div class="container-content">
-            <div class="grid items-end gap-8 lg:grid-cols-2 lg:gap-14">
-                <header>
-                    <p class="eyebrow mb-3">Bookshelf</p>
-                    <h1 class="font-display text-display-sm text-parchment sm:text-display-md">
-                        The <span class="text-gold">Wisdom</span> Vault
-                    </h1>
-                </header>
-                <p class="max-w-prose text-base leading-relaxed text-parchment-300 lg:pb-1">
+            <header class="page-header mb-0 max-w-3xl border-0 pb-0">
+                <p class="eyebrow mb-3">Bookshelf</p>
+                <h1 class="page-title">
+                    The <span class="text-gold">Wisdom</span> Vault
+                </h1>
+                <p class="page-lead">
                     Curated knowledge for the modern seeker. These are the books that shaped our
                     philosophy and protocols — each one chosen for practical value, not popularity.
                 </p>
-            </div>
+            </header>
         </div>
     </section>
 
@@ -90,10 +88,10 @@ const featuredBook = {
                 <p class="hidden text-sm text-parchment-400 sm:block">{books.length} books</p>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {
                     books.map((book) => (
-                        <article class="card group overflow-hidden p-0 transition-colors hover:border-gold/30">
+                        <article class="card group h-full overflow-hidden p-0 transition-colors hover:border-gold/30">
                             <div class="relative aspect-[16/10] overflow-hidden">
                                 <img
                                     src={book.cover}
@@ -126,11 +124,11 @@ const featuredBook = {
                                         Recommended
                                     </span>
                                 </div>
-                                <h3 class="font-display text-lg text-parchment transition-colors group-hover:text-gold sm:text-xl">
+                                <h3 class="font-display text-lg font-bold leading-snug text-parchment transition-colors group-hover:text-gold sm:text-xl">
                                     {book.title}
                                 </h3>
                                 <p class="mt-1 text-sm text-parchment-400">by {book.author}</p>
-                                <p class="mt-2 text-sm leading-relaxed text-parchment-300 line-clamp-3">
+                                <p class="mt-2 text-sm leading-relaxed text-parchment-300 line-clamp-2 text-justify">
                                     {book.description}
                                 </p>
                             </div>

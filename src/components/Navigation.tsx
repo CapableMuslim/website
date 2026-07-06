@@ -37,9 +37,7 @@ export default function Navigation() {
                         >
                             <a
                                 href={link.href}
-                                className={`nav-link inline-flex items-center gap-1 rounded px-3 py-2 ${
-                                    articlesOpen ? 'text-parchment' : ''
-                                }`}
+                                className="nav-link inline-flex items-center gap-1 rounded px-3 py-2"
                                 aria-expanded={articlesOpen}
                                 aria-haspopup="true"
                                 onFocus={openDropdown}

@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArticlesPage from '../../components/ArticlesPage.tsx';
+import ArticlesFilter from '../../components/ArticlesFilter.tsx';
+import ArticleCard from '../../components/ui/ArticleCard.astro';
+import { pillarsData } from '../../data/pillars';
 import { getCollection } from 'astro:content';
 import { sortPostsByDate, toPostCard } from '../../lib/posts';
 
 const allPosts = await getCollection('posts');
 const posts = sortPostsByDate(allPosts).map(toPostCard);
+
+const keysWithPosts = new Set(posts.map((p) => p.pillarKey));
+const categories = pillarsData
+    .filter((p) => p.slug !== 'bookshelf' && keysWithPosts.has(p.name))
+    .map((p) => ({
+        key: p.name,
+        label: p.name.charAt(0) + p.name.slice(1).toLowerCase(),
+    }));
 ---
 
 <BaseLayout
@@ -23,7 +33,17 @@ const posts = sortPostsByDate(allPosts).map(toPostCard);
                 </p>
             </header>
 
-            <ArticlesPage client:load posts={posts} />
+            <ArticlesFilter client:load categories={categories} />
+
+            <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {
+                    posts.map((post) => (
+                        <li data-article-pillar={post.pillarKey}>
+                            <ArticleCard post={post} variant="default" />
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
     </section>
 </BaseLayout>
