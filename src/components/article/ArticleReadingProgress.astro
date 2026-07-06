@@ -1,0 +1,70 @@
+<div
+    class="article-progress"
+    role="progressbar"
+    aria-label="Reading progress"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    id="article-reading-progress"
+>
+    <div class="article-progress__track">
+        <div class="article-progress__bar" id="article-progress-bar"></div>
+    </div>
+</div>
+
+<script>
+    const content = document.querySelector('.article-content');
+    const progressRoot = document.getElementById('article-reading-progress');
+    const bar = document.getElementById('article-progress-bar');
+
+    if (content && progressRoot && bar) {
+        let ticking = false;
+
+        const getHeaderOffset = () => {
+            const header = document.getElementById('site-header');
+            const progress = progressRoot?.offsetHeight ?? 2;
+            return (header?.offsetHeight ?? 64) + progress;
+        };
+
+        const getLastHeading = () => {
+            const headings = content.querySelectorAll('h2, h3');
+            return headings.length > 0 ? headings[headings.length - 1] : null;
+        };
+
+        const update = () => {
+            const headerOffset = getHeaderOffset();
+            const contentTop = content.getBoundingClientRect().top + window.scrollY;
+            const lastHeading = getLastHeading();
+            const endPoint = lastHeading
+                ? lastHeading.getBoundingClientRect().top + window.scrollY
+                : contentTop + content.offsetHeight;
+            const range = endPoint - contentTop;
+
+            if (range <= 0) {
+                bar.style.width = '100%';
+                progressRoot.setAttribute('aria-valuenow', '100');
+                return;
+            }
+
+            const readPos = window.scrollY + headerOffset;
+            const pct = Math.min(100, Math.max(0, ((readPos - contentTop) / range) * 100));
+
+            bar.style.width = `${pct}%`;
+            progressRoot.setAttribute('aria-valuenow', String(Math.round(pct)));
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(() => {
+                    update();
+                    ticking = false;
+                });
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+    }
+</script>

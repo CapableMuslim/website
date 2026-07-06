@@ -1,0 +1,12 @@
+---
+import ArticleFeedback from './ArticleFeedback';
+
+interface Props {
+    articleSlug: string;
+    articleTitle: string;
+}
+
+const { articleSlug, articleTitle } = Astro.props;
+---
+
+<ArticleFeedback articleSlug={articleSlug} articleTitle={articleTitle} client:visible />

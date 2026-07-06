@@ -4,8 +4,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleHero from '../../components/article/ArticleHero.astro';
 import ArticleToc from '../../components/article/ArticleToc.astro';
 import ArticleFollow from '../../components/article/ArticleFollow.astro';
+import ArticleNewsletter from '../../components/article/ArticleNewsletter.astro';
 import ArticleRelated from '../../components/article/ArticleRelated.astro';
+import ArticleFeedback from '../../components/article/ArticleFeedback.astro';
 import ArticlePagination from '../../components/article/ArticlePagination.astro';
+import ArticleReadingProgress from '../../components/article/ArticleReadingProgress.astro';
 import {
     DEFAULT_HERO_IMAGE,
     estimateReadingTime,
@@ -34,11 +37,19 @@ const heroImage = post.data.heroImage ?? DEFAULT_HERO_IMAGE;
 const currentIndex = allPosts.findIndex((entry) => entry.slug === post.slug);
 const prevPost =
     currentIndex < allPosts.length - 1
-        ? { slug: allPosts[currentIndex + 1].slug, title: allPosts[currentIndex + 1].data.title }
+        ? {
+              slug: allPosts[currentIndex + 1].slug,
+              title: allPosts[currentIndex + 1].data.title,
+              image: allPosts[currentIndex + 1].data.heroImage ?? DEFAULT_HERO_IMAGE,
+          }
         : null;
 const nextPost =
     currentIndex > 0
-        ? { slug: allPosts[currentIndex - 1].slug, title: allPosts[currentIndex - 1].data.title }
+        ? {
+              slug: allPosts[currentIndex - 1].slug,
+              title: allPosts[currentIndex - 1].data.title,
+              image: allPosts[currentIndex - 1].data.heroImage ?? DEFAULT_HERO_IMAGE,
+          }
         : null;
 ---
 
@@ -82,6 +93,7 @@ const nextPost =
                             <div class="article-mobile-toc__body">
                                 <ArticleToc headings={headings} variant="compact" id="article-toc-mobile" />
                                 <ArticleFollow />
+                                <ArticleNewsletter />
                             </div>
                         </details>
                     </div>
@@ -93,6 +105,7 @@ const nextPost =
                     <div class="article-sidebar__inner">
                         <ArticleToc headings={headings} id="article-toc-left" />
                         <ArticleFollow />
+                        <ArticleNewsletter />
                     </div>
                 </aside>
 
@@ -102,12 +115,14 @@ const nextPost =
                     </div>
 
                     <ArticlePagination prevPost={prevPost} nextPost={nextPost} />
+                    <ArticleFeedback articleSlug={post.slug} articleTitle={post.data.title} />
+                    <ArticleRelated posts={relatedPosts} />
                 </div>
             </div>
-
-            <ArticleRelated posts={relatedPosts} />
         </div>
     </article>
+
+    <ArticleReadingProgress />
 
     <script>
         const tocLinks = document.querySelectorAll('[data-toc-link]');

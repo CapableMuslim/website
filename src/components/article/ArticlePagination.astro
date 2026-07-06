@@ -1,9 +1,11 @@
 ---
+import { DEFAULT_HERO_IMAGE } from '../../lib/posts';
 import { withBase } from '../../lib/paths';
 
 interface NavPost {
     slug: string;
     title: string;
+    image: string;
 }
 
 interface Props {
@@ -17,25 +19,64 @@ const { prevPost, nextPost } = Astro.props;
 <nav aria-label="Article navigation" class="article-nav">
     {
         prevPost ? (
-            <a href={withBase(`/posts/${prevPost.slug}`)} class="article-nav__link article-nav__link--prev">
-                <span class="article-nav__label">&lt;&lt; Previous</span>
-                <span class="article-nav__title">{prevPost.title}</span>
+            <a href={withBase(`/posts/${prevPost.slug}`)} class="article-nav__item group">
+                <span class="article-nav__heading">&lt;&lt; Previous</span>
+                <article class="article-related__card-inner">
+                    <div class="article-related__image-wrap">
+                        <img
+                            src={prevPost.image}
+                            alt=""
+                            class="article-related__image"
+                            loading="lazy"
+                        />
+                        <div class="article-related__image-overlay" aria-hidden="true"></div>
+                    </div>
+                    <div class="article-related__body">
+                        <h3 class="article-related__card-title">{prevPost.title}</h3>
+                    </div>
+                </article>
             </a>
         ) : (
             <div class="article-nav__spacer" aria-hidden="true"></div>
         )
     }
 
-    <a href={withBase('/posts')} class="article-nav__link article-nav__link--center">
-        <span class="article-nav__label">All Articles</span>
-        <span class="article-nav__subtitle">Browse library</span>
+    <a href={withBase('/posts')} class="article-nav__item article-nav__item--center group">
+        <span class="article-nav__heading">All Articles</span>
+        <article class="article-related__card-inner">
+            <div class="article-related__image-wrap">
+                <img
+                    src={DEFAULT_HERO_IMAGE}
+                    alt=""
+                    class="article-related__image"
+                    loading="lazy"
+                />
+                <div class="article-related__image-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="article-related__body article-related__body--center">
+                <h3 class="article-related__card-title">Browse library</h3>
+            </div>
+        </article>
     </a>
 
     {
         nextPost ? (
-            <a href={withBase(`/posts/${nextPost.slug}`)} class="article-nav__link article-nav__link--next">
-                <span class="article-nav__label">Next &gt;&gt;</span>
-                <span class="article-nav__title">{nextPost.title}</span>
+            <a href={withBase(`/posts/${nextPost.slug}`)} class="article-nav__item article-nav__item--end group">
+                <span class="article-nav__heading">Next &gt;&gt;</span>
+                <article class="article-related__card-inner">
+                    <div class="article-related__image-wrap">
+                        <img
+                            src={nextPost.image}
+                            alt=""
+                            class="article-related__image"
+                            loading="lazy"
+                        />
+                        <div class="article-related__image-overlay" aria-hidden="true"></div>
+                    </div>
+                    <div class="article-related__body article-related__body--end">
+                        <h3 class="article-related__card-title">{nextPost.title}</h3>
+                    </div>
+                </article>
             </a>
         ) : (
             <div class="article-nav__spacer" aria-hidden="true"></div>
