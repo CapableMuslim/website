@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { supportConfig } from '../data/support';
+import { withBase } from '../lib/paths';
+
+const { revolutUrl, qrImagePath, seoTitle, seoDescription, reasons } = supportConfig;
+const qrSrc = withBase(qrImagePath);
+---
+
+<BaseLayout title="Support" description={seoDescription} fullTitle={seoTitle}>
+    <section class="relative overflow-hidden section-padding-sm section-surface">
+        <div
+            class="pointer-events-none absolute inset-0 opacity-[0.035]"
+            aria-hidden="true"
+            style="background-image: linear-gradient(30deg, rgb(197 165 114) 12%, transparent 12.5%, transparent 50%, rgb(197 165 114) 50%, rgb(197 165 114) 62.5%, transparent 62.5%, transparent 100%); background-size: 2.75rem 4.75rem;"
+        ></div>
+
+        <div class="container-content relative">
+            <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
+                <!-- Left: mission & context -->
+                <div class="min-w-0">
+                    <p class="eyebrow mb-3">Independent & reader-supported</p>
+                    <h1 class="font-display text-display-sm text-parchment sm:text-display-md">
+                        Support The Capable Muslim
+                    </h1>
+                    <p class="page-lead mt-4 text-justify">
+                        Help build a long-term educational platform that helps Muslims become stronger, more
+                        disciplined, and more capable in every area of life — while staying grounded in Islamic
+                        principles.
+                    </p>
+                    <p class="mt-4 text-sm text-parchment-400">
+                        This project is independently built and supported by its readers.
+                    </p>
+
+                    <h2 class="mt-8 font-display text-lg text-parchment sm:text-xl">Why support</h2>
+                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-parchment-300 sm:text-base">
+                        {
+                            reasons.map((reason) => (
+                                <li class="flex gap-3">
+                                    <span
+                                        class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span class="text-justify">{reason}</span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Right: Revolut donation -->
+                <div id="donate" class="lg:sticky lg:top-28">
+                    <article class="card overflow-hidden p-6 sm:p-8">
+                        <div class="flex flex-col items-center gap-6">
+                            <figure class="w-full max-w-[280px] sm:max-w-[300px]">
+                                <div class="overflow-hidden rounded-lg border border-gold/20 bg-white p-3 shadow-subtle">
+                                    <img
+                                        src={qrSrc}
+                                        alt="Revolut QR code to donate to The Capable Muslim"
+                                        width="512"
+                                        height="512"
+                                        class="h-auto w-full"
+                                        loading="eager"
+                                        decoding="async"
+                                    />
+                                </div>
+                            </figure>
+
+                            <a
+                                href={revolutUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-primary w-full px-8 py-4 text-base sm:min-w-[16rem]"
+                            >
+                                Support via Revolut
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

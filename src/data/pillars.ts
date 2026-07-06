@@ -7,12 +7,12 @@ export const pillarsData = [
     {
         name: 'MINDSET',
         slug: 'mindset',
-        subpillars: ['IDENTITY', 'STOICISM', 'MASCULINITY', 'SELF DEVELOPMENT', 'DISCIPLINE'],
+        subpillars: ['IDENTITY', 'MASCULINITY', 'SELF DEVELOPMENT', 'DISCIPLINE'],
     },
     {
         name: 'SOCIAL',
         slug: 'social',
-        subpillars: ['SOCIAL SKILLS', 'FRIENDSHIP', 'FAMILY', 'DATING', 'FATHERHOOD'],
+        subpillars: ['SOCIAL SKILLS', 'FRIENDSHIP', 'FAMILY', 'FATHERHOOD'],
     },
     {
         name: 'FITNESS',

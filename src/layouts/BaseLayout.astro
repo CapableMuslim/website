@@ -11,9 +11,11 @@ import { withBase } from "../lib/paths";
 interface Props {
 	title: string;
 	description?: string;
+	/** Overrides the default "{title} | {siteName}" document title and og:title */
+	fullTitle?: string;
 }
 
-const { title, description = siteConfig.defaultDescription } = Astro.props;
+const { title, description = siteConfig.defaultDescription, fullTitle } = Astro.props;
 const { name: siteName, logo } = siteConfig;
 ---
 
@@ -29,7 +31,7 @@ const { name: siteName, logo } = siteConfig;
 		<link rel="icon" href={withBase('/favicons/favicon.ico')} />
 		<link rel="icon" type="image/png" href={withBase(logo.icon)} />
 		<meta name="generator" content={Astro.generator} />
-		<meta property="og:title" content={`${title} | ${siteName}`} />
+		<meta property="og:title" content={fullTitle ?? `${title} | ${siteName}`} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 
@@ -40,7 +42,7 @@ const { name: siteName, logo } = siteConfig;
 			rel="stylesheet"
 		/>
 
-		<title>{title} | {siteName}</title>
+		<title>{fullTitle ?? `${title} | ${siteName}`}</title>
 	</head>
 	<body class="bg-bronze-950 text-parchment-200">
 		<a

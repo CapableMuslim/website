@@ -30,7 +30,7 @@ export const landingPillars: LandingPillar[] = [
         name: 'Mindset',
         slug: 'mindset',
         href: p('/pillars/mindset'),
-        description: 'Identity, discipline, stoicism, and the mental architecture of lasting growth.',
+        description: 'Identity, discipline, and the mental architecture of lasting growth.',
         icon: 'brain',
     },
     {
@@ -111,7 +111,7 @@ export const navLinks: NavLink[] = [
 
 export const supportMissionLink = {
     label: 'Support the Mission',
-    href: p('/contact'),
+    href: p('/support'),
 } as const;
 
 export type ArticleCategory = {
