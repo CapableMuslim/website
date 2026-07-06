@@ -3,9 +3,12 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-// https://astro.build/config
 export default defineConfig({
     integrations: [react(), tailwind()],
     output: 'static',
-    outDir: './Static Pages'
+    outDir: './Static Pages',
+    server: {
+        port: 2026,
+        strictPort: true,
+    },
 });
