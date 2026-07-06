@@ -19,7 +19,7 @@ const { name, subpillars } = pillarData;
 const allPosts = await getCollection('posts');
 const posts = sortPostsByDate(allPosts.filter((post) => post.data.pillar === name)).map(toPostCard);
 
-const pageDescription = `Master your life with our ${name} protocols and guides.`;
+const pageDescription = pillarData.description;
 ---
 
 <BaseLayout title={name} description={pageDescription}>
@@ -28,9 +28,7 @@ const pageDescription = `Master your life with our ${name} protocols and guides.
             <header class="page-header">
                 <p class="eyebrow mb-3">Pillar</p>
                 <h1 class="page-title">{name}</h1>
-                <p class="page-lead">
-                    Articles, protocols, and guides for building capability in {name.toLowerCase()}.
-                </p>
+                <p class="page-lead page-lead--pillar">{pillarData.description}</p>
             </header>
 
             {

@@ -1,0 +1,24 @@
+---
+import HeroFeaturedCarousel from './HeroFeaturedCarousel';
+import type { PostCard } from '../../lib/posts';
+import { withBase } from '../../lib/paths';
+
+interface Props {
+    posts: PostCard[];
+}
+
+const { posts } = Astro.props;
+
+const items = posts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    pillar: post.pillar,
+    subpillar: post.subpillar,
+    image: post.image,
+    readingTime: post.readingTime,
+    href: withBase(`/posts/${post.slug}`),
+}));
+---
+
+<HeroFeaturedCarousel items={items} client:visible />

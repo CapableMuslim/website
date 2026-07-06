@@ -1,6 +1,14 @@
 ---
 import { siteConfig } from '../../data/site';
 import { withBase } from '../../lib/paths';
+import type { PostCard } from '../../lib/posts';
+import HeroFeaturedCarousel from './HeroFeaturedCarousel.astro';
+
+interface Props {
+    latestPosts: PostCard[];
+}
+
+const { latestPosts } = Astro.props;
 ---
 
 <section class="section-padding-lg relative overflow-hidden bg-bronze-950 text-parchment">
@@ -29,40 +37,23 @@ import { withBase } from '../../lib/paths';
                 <p class="mt-12 text-justify text-sm text-parchment-400">{siteConfig.tagline}</p>
             </div>
 
-            <div class="hidden lg:col-span-5 lg:block">
-                <div class="relative mx-auto max-w-sm lg:max-w-none">
-                    <div class="relative aspect-[4/5]">
-                        <div class="absolute inset-0 rounded-lg border border-gold/15 bg-gold/[0.03]"></div>
-                        <div class="absolute inset-4 rounded border border-gold/25"></div>
-                        <div class="absolute inset-8 flex flex-col justify-between p-6 sm:p-8">
-                            <div>
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
-                                    Editorial Focus
-                                </p>
-                                <p class="mt-4 font-display text-2xl leading-snug text-parchment">
-                                    Build with intention. Grow through discipline and clarity.
-                                </p>
-                            </div>
-                            <div class="space-y-3 border-t border-gold/15 pt-6">
-                                <div class="flex items-center justify-between text-sm">
-                                    <span class="text-parchment-400">Core pillars</span>
-                                    <span class="font-semibold text-parchment">10</span>
+            {
+                latestPosts.length > 0 && (
+                    <div class="hidden lg:col-span-5 lg:block">
+                        <div class="relative mx-auto max-w-sm lg:max-w-none">
+                            <div class="relative aspect-[4/5]">
+                                <div class="absolute inset-0 rounded-lg border border-gold/15 bg-gold/[0.03]"></div>
+                                <div class="absolute inset-4 rounded border border-gold/25"></div>
+                                <div class="absolute inset-8 flex flex-col">
+                                    <HeroFeaturedCarousel posts={latestPosts} />
                                 </div>
-                                <div class="flex items-center justify-between text-sm">
-                                    <span class="text-parchment-400">Content</span>
-                                    <span class="font-semibold text-parchment">Guides & essays</span>
-                                </div>
-                                <div class="flex items-center justify-between text-sm">
-                                    <span class="text-parchment-400">Built for</span>
-                                    <span class="font-semibold text-parchment">Muslim men</span>
-                                </div>
+                                <div class="absolute -right-2 -top-2 h-8 w-8 border-r-2 border-t-2 border-gold/40"></div>
+                                <div class="absolute -bottom-2 -left-2 h-8 w-8 border-b-2 border-l-2 border-gold/30"></div>
                             </div>
                         </div>
-                        <div class="absolute -right-2 -top-2 h-8 w-8 border-r-2 border-t-2 border-gold/40"></div>
-                        <div class="absolute -bottom-2 -left-2 h-8 w-8 border-b-2 border-l-2 border-gold/30"></div>
                     </div>
-                </div>
-            </div>
+                )
+            }
         </div>
     </div>
 </section>

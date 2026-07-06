@@ -8,10 +8,11 @@ import NewsletterSection from '../components/landing/NewsletterSection.astro';
 import FAQSection from '../components/landing/FAQSection.astro';
 import { getCollection } from 'astro:content';
 import { featuredSlugs } from '../data/landing';
-import { getFeaturedPosts } from '../lib/posts';
+import { getFeaturedPosts, getLatestPosts } from '../lib/posts';
 
 const allPosts = await getCollection('posts');
 const featuredPosts = getFeaturedPosts(allPosts, featuredSlugs, 6);
+const latestPosts = getLatestPosts(allPosts, 5);
 ---
 
 <BaseLayout
@@ -19,7 +20,7 @@ const featuredPosts = getFeaturedPosts(allPosts, featuredSlugs, 6);
 	description="The Capable Muslim — a practical knowledge platform helping Muslim men become healthier, stronger, wiser, and more capable through faith, discipline, and applied knowledge."
 >
 	<div class="home-justify">
-		<Hero />
+		<Hero latestPosts={latestPosts} />
 		<FeaturedArticles posts={featuredPosts} />
 	</div>
 	<ContentPillars />

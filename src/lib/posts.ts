@@ -58,6 +58,13 @@ export function sortPostsByDate(posts: CollectionEntry<'posts'>[]): CollectionEn
     });
 }
 
+export function getLatestPosts(
+    allPosts: CollectionEntry<'posts'>[],
+    limit = 3,
+): PostCard[] {
+    return sortPostsByDate(allPosts).slice(0, limit).map(toPostCard);
+}
+
 export function getRelatedPosts(
     allPosts: CollectionEntry<'posts'>[],
     current: CollectionEntry<'posts'>,

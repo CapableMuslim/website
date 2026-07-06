@@ -91,6 +91,10 @@
         @apply mt-3 max-w-prose text-base leading-relaxed text-parchment-300 sm:text-lg;
     }
 
+    .page-lead--pillar {
+        @apply max-w-none text-base sm:text-lg lg:whitespace-nowrap;
+    }
+
     .input-field {
         @apply w-full rounded border border-gold/20 bg-bronze-950/50 px-4 py-2.5 text-sm text-parchment placeholder:text-parchment-400 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
     }
@@ -159,6 +163,23 @@
     .home-justify p,
     .home-justify .section-desc {
         @apply text-justify;
+    }
+
+    .hero-carousel__arrow {
+        @apply z-10 flex h-6 w-6 items-center justify-center rounded-full border border-gold/30 bg-bronze-950/85 text-gold opacity-0 backdrop-blur-sm transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-parchment;
+    }
+
+    .hero-carousel__viewport:hover .hero-carousel__arrow,
+    .hero-carousel__arrow:focus-visible {
+        @apply opacity-100;
+    }
+
+    .hero-carousel__arrow--prev {
+        @apply absolute left-1.5 top-1/2 -translate-y-1/2;
+    }
+
+    .hero-carousel__arrow--next {
+        @apply absolute right-1.5 top-1/2 -translate-y-1/2;
     }
 }
 
