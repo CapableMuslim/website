@@ -81,52 +81,6 @@ export const landingPillars: LandingPillar[] = [
     },
 ];
 
-export type PopularResource = {
-    title: string;
-    description: string;
-    href: string;
-    type: 'Guide' | 'Framework' | 'Reading' | 'Article';
-};
-
-export const popularResources: PopularResource[] = [
-    {
-        title: 'Nutrition Fundamentals',
-        description: 'A practical foundation for eating well without complexity or dogma.',
-        href: '/posts/nutrition-fundamentals',
-        type: 'Guide',
-    },
-    {
-        title: 'Strength Training Essentials',
-        description: 'The core principles every man should understand before stepping into a gym.',
-        href: '/posts/strength-training-essentials',
-        type: 'Guide',
-    },
-    {
-        title: 'Forging an Unbreakable Identity',
-        description: 'How to build a sense of self that withstands pressure and drives growth.',
-        href: '/posts/forging-unbreakable-identity',
-        type: 'Framework',
-    },
-    {
-        title: 'Essential Books Every Man Should Read',
-        description: 'Curated reading that sharpens thinking, character, and capability.',
-        href: '/posts/essential-books-every-man-should-read',
-        type: 'Reading',
-    },
-    {
-        title: 'Building Wealth: Financial Foundations',
-        description: 'Long-term thinking about money, career, and financial responsibility.',
-        href: '/posts/building-wealth-financial-foundations',
-        type: 'Article',
-    },
-    {
-        title: 'Essential Skills Every Man Should Master',
-        description: 'Competencies that serve you across every domain of life.',
-        href: '/posts/essential-skills-every-man-should-master',
-        type: 'Guide',
-    },
-];
-
 /** Slugs to feature on the homepage — falls back to latest posts if unavailable */
 export const featuredSlugs = [
     'forging-unbreakable-identity',

@@ -1,29 +1,28 @@
-# Capable Muslim - Website
+# The Capable Muslim — Website
 
-This is the source code for the Capable Muslim website, built with [Astro](https://astro.build), React, and TailwindCSS.
+Static site for [The Capable Muslim](https://github.com/), built with [Astro](https://astro.build), React, and Tailwind CSS.
 
-## Project Structure
+## Project structure
 
-- `src/pages`: Website pages.
-- `src/components`: UI components (Navigation, Footer, etc).
-- `src/layouts`: Page layouts.
-- `src/content/posts`: **Markdown content files belong here.**
-- `src/data`: Configuration data (Pillars, site config).
-- `public`: Static assets (logos, favicons).
+- `src/pages` — routes and pages
+- `src/components` — UI components
+- `src/content/posts` — article markdown
+- `src/data` — site config, navigation, pillars
+- `public` — static assets (logos, favicons)
+- `Static Pages` — production build output (generated, not committed)
 
-## Getting Started
+## Local development
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+npm run dev
+```
 
-2. Run the development server:
-   ```bash
-   npm run dev
-   ```
+Dev server: `http://localhost:2026`
 
-3. Build for production:
-   ```bash
-   npm run build
-   ```
+## Production build
+
+```bash
+npm run build
+npm run preview
+```

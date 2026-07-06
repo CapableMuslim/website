@@ -82,8 +82,8 @@ export default function Navigation() {
                                                 href={category.href}
                                                 className={`inline-block rounded px-3 py-2 text-sm transition-colors ${
                                                     activeCategory?.href === category.href
-                                                        ? 'bg-gold/15 font-semibold text-gold'
-                                                        : 'text-parchment-300 hover:bg-gold/10 hover:text-parchment'
+                                                        ? 'bg-gold/15 font-semibold text-white'
+                                                        : 'text-white hover:bg-gold/10 hover:text-gold'
                                                 }`}
                                                 onMouseEnter={() => handleCategoryEnter(category)}
                                             >
@@ -105,7 +105,7 @@ export default function Navigation() {
                                             <li key={sub.href}>
                                                 <a
                                                     href={sub.href}
-                                                    className="text-sm text-parchment-300 transition-colors hover:text-gold"
+                                                    className="text-sm text-white transition-colors hover:text-gold"
                                                 >
                                                     {sub.label}
                                                 </a>
