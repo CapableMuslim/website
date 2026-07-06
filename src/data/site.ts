@@ -5,7 +5,7 @@ export const siteConfig = {
         'The Capable Muslim — practical guidance for strength, faith, and disciplined living.',
     footerTagline:
         'You were created for more than comfort and distraction. We walk with Muslims who refuse to settle — faith at the center, discipline in the daily grind, and the quiet courage to become who you were always meant to be.',
-    email: 'contact@capablemuslim.com',
+    email: 'capablemuslim@gmail.com',
     logo: {
         full: '/logo-clean.png',
         nav: '/logo small-clean.png',

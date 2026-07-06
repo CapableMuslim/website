@@ -62,7 +62,7 @@ export const faqItems: FaqItem[] = [
     },
     {
         q: 'How do I unsubscribe from the newsletter?',
-        a: 'Every email includes an unsubscribe link. You can also contact us at contact@capablemuslim.com and we will remove you promptly.',
+        a: 'Every email includes an unsubscribe link. You can also contact us at capablemuslim@gmail.com and we will remove you promptly.',
     },
     {
         q: 'Is there a community aspect?',

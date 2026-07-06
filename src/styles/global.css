@@ -92,11 +92,11 @@
     }
 
     .input-field {
-        @apply w-full rounded border border-gold/20 bg-bronze-950/50 px-4 py-2.5 text-sm text-parchment placeholder:text-parchment-400 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+        @apply w-full rounded border border-gold/20 bg-bronze-950/50 px-4 py-2.5 text-sm text-white/80 placeholder:text-white/45 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
     }
 
     .eyebrow {
-        @apply text-xs font-semibold uppercase tracking-[0.16em] text-gold;
+        @apply text-xs font-semibold uppercase tracking-[0.16em] text-white/80;
     }
 
     .btn {
@@ -136,15 +136,15 @@
     }
 
     .nav-link {
-        @apply text-sm font-bold text-white transition-colors hover:text-gold;
+        @apply text-sm font-bold text-white/80 transition-colors hover:text-gold;
     }
 
     .category-tag {
-        @apply inline-block text-[11px] font-semibold uppercase tracking-[0.12em] text-gold;
+        @apply inline-block text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80;
     }
 
     .reading-time {
-        @apply text-xs text-parchment-400;
+        @apply text-xs text-white/80;
     }
 
     .glass {
@@ -165,5 +165,13 @@
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+
+    /* Small copy only — headings and large text keep parchment/gold */
+    .text-xs:not(.text-bronze-950):not(.text-brand-950),
+    .text-sm:not(.text-bronze-950):not(.text-brand-950),
+    [class*='text-[10px]']:not(.text-bronze-950):not(.text-brand-950),
+    [class*='text-[11px]']:not(.text-bronze-950):not(.text-brand-950) {
+        @apply text-white/80;
     }
 }
