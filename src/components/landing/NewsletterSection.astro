@@ -1,5 +1,6 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
+import BeehiivForm from '../BeehiivForm.astro';
 import { withBase } from '../../lib/paths';
 ---
 
@@ -23,22 +24,14 @@ import { withBase } from '../../lib/paths';
                 </a>
             </div>
 
-            <div class="card p-6 sm:p-8">
-                <p class="mb-4 font-display text-lg text-parchment">Subscribe</p>
-                <form class="flex flex-col gap-3" action="#" method="post">
-                    <label for="newsletter-email" class="text-xs font-semibold uppercase tracking-wider text-gold">
-                        Email address
-                    </label>
-                    <input
-                        type="email"
-                        id="newsletter-email"
-                        name="email"
-                        required
-                        placeholder="you@example.com"
-                        class="input-field"
-                    />
-                    <button type="submit" class="btn-primary w-full sm:w-auto">Subscribe</button>
-                </form>
+            <div class="card p-6 sm:p-8 text-center">
+                <h2 class="text-balance font-display text-xl text-gold sm:text-2xl">Capable Muslim's Newsletter</h2>
+                <p class="mt-2 text-balance text-center text-sm leading-relaxed text-parchment-300 sm:text-pretty md:whitespace-nowrap">
+                    Helping Muslims become healthier, stronger, wiser, and more capable.
+                </p>
+                <div class="mt-5">
+                    <BeehiivForm variant="wide" />
+                </div>
                 <p class="mt-4 text-xs leading-relaxed text-parchment-400">
                     Free. Unsubscribe anytime. We respect your attention.
                 </p>

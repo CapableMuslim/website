@@ -1,6 +1,6 @@
 export const newsletterConfig = {
-    /** Beehiiv, Formspree, or compatible endpoint — set PUBLIC_NEWSLETTER_FORM_ACTION in .env */
-    formAction: import.meta.env.PUBLIC_NEWSLETTER_FORM_ACTION ?? '',
+    beehiivFormId: 'c0215804-fa0c-4369-b1d4-873ba1dfd317',
+    beehiivLoaderSrc: 'https://subscribe-forms.beehiiv.com/v3/loader.js',
 
     sidebarTitle: 'Subscribe to Newsletter',
     sidebarDescription: 'Weekly guidance for building a disciplined and capable life.',

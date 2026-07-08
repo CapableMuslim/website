@@ -1,0 +1,19 @@
+---
+import { newsletterConfig } from '../data/newsletter';
+
+interface Props {
+    class?: string;
+    variant?: 'default' | 'compact' | 'wide' | 'sidebar';
+}
+
+const { class: className = '', variant = 'default' } = Astro.props;
+---
+
+<div class:list={['beehiiv-form-wrap', `beehiiv-form-wrap--${variant}`, className]}>
+    <script
+        is:inline
+        async
+        src={newsletterConfig.beehiivLoaderSrc}
+        data-beehiiv-form={newsletterConfig.beehiivFormId}
+    ></script>
+</div>

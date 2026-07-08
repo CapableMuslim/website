@@ -178,45 +178,4 @@ const stats = [
         window.addEventListener('resize', syncCommunityListHeight);
         document.fonts?.ready?.then(syncCommunityListHeight);
     </script>
-
-    <!-- Bottom CTA -->
-    <section class="section-padding" aria-labelledby="cta-heading">
-        <div class="container-content">
-            <div class="card mx-auto max-w-2xl p-6 text-center sm:p-8">
-                <h2 id="cta-heading" class="font-display text-xl text-parchment sm:text-2xl">
-                    Become Part of the Mission
-                </h2>
-                <p class="mx-auto mt-3 max-w-prose text-sm leading-relaxed text-parchment-300">
-                    Every article, conversation, and shared experience helps build a stronger
-                    community. We'd love to have you with us.
-                </p>
-                <div class="mx-auto mt-5 max-w-sm">
-                    <form class="flex flex-col gap-2 sm:flex-row sm:items-end" action="#" method="post">
-                        <div class="flex-1 text-left">
-                            <label
-                                for="community-newsletter-email"
-                                class="text-[10px] font-semibold uppercase tracking-wider text-gold"
-                            >
-                                Email address
-                            </label>
-                            <input
-                                type="email"
-                                id="community-newsletter-email"
-                                name="email"
-                                required
-                                placeholder="you@example.com"
-                                class="input-field mt-1 py-2 text-sm"
-                            />
-                        </div>
-                        <button type="submit" class="btn-primary w-full shrink-0 px-4 py-2 text-sm sm:w-auto">
-                            Subscribe
-                        </button>
-                    </form>
-                    <p class="mt-2 text-[11px] leading-relaxed text-parchment-400">
-                        Free. Unsubscribe anytime.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 </BaseLayout>

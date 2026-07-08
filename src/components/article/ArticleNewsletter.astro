@@ -1,28 +1,11 @@
 ---
 import { newsletterConfig } from '../../data/newsletter';
+import BeehiivForm from '../BeehiivForm.astro';
 ---
 
 <aside class="article-newsletter" aria-label="Newsletter subscription">
     <h2 class="article-newsletter__title">{newsletterConfig.sidebarTitle}</h2>
     <p class="article-newsletter__text">{newsletterConfig.sidebarDescription}</p>
-    <form
-        class="article-newsletter__form"
-        action={newsletterConfig.formAction || '#'}
-        method="post"
-    >
-        <label for="article-sidebar-newsletter-email" class="sr-only">Email address</label>
-        <input
-            type="email"
-            id="article-sidebar-newsletter-email"
-            name="email"
-            required
-            placeholder="you@example.com"
-            class="article-newsletter__input input-field"
-            autocomplete="email"
-        />
-        <button type="submit" class="article-newsletter__submit btn-primary">
-            {newsletterConfig.submitLabel}
-        </button>
-    </form>
+    <BeehiivForm class="article-newsletter__embed" variant="sidebar" />
     <p class="article-newsletter__note">{newsletterConfig.footnote}</p>
 </aside>
