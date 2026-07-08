@@ -20,7 +20,7 @@ export const siteConfig = {
         threads: 'https://www.threads.com/@capablemuslim',
         pinterest: 'https://pinterest.com/capablemuslim/',
         facebook: 'https://www.facebook.com/capablemuslim',
-        linkedin: 'https://www.linkedin.com/company/capablemuslim',
+        linkedin: 'https://www.linkedin.com/in/capablemuslim',
         medium: 'https://medium.com/@capablemuslim',
     },
     communities: {
