@@ -37,3 +37,6 @@ Desktop.ini
 # Deploy previews
 .vercel/
 .netlify/
+
+# Prompts
+.prompts/

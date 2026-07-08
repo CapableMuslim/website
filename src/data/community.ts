@@ -82,13 +82,6 @@ export const socialPlatforms: SocialPlatform[] = [
         href: social.medium,
         cta: 'Follow',
     },
-    {
-        id: 'snapchat',
-        name: 'Snapchat',
-        description: 'Short behind-the-scenes updates and stories.',
-        href: social.snapchat,
-        cta: 'Follow',
-    },
 ];
 
 export const communityPlatforms: CommunityPlatform[] = [
@@ -111,13 +104,6 @@ export const communityPlatforms: CommunityPlatform[] = [
         name: 'Reddit',
         description: 'Long-form discussions, questions, and shared experiences.',
         href: communities.reddit,
-        cta: 'Join',
-    },
-    {
-        id: 'whatsapp',
-        name: 'WhatsApp',
-        description: 'Small accountability groups and local community conversations.',
-        href: communities.whatsapp,
         cta: 'Join',
     },
 ];

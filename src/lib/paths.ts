@@ -1,4 +1,4 @@
-/** Prefix an internal path with the site base (e.g. `/website/` on GitHub Pages). */
+/** Prefix an internal path with the site base URL path. */
 export function withBase(path: string): string {
     if (!path || /^(https?:|mailto:|#|tel:)/.test(path)) {
         return path;

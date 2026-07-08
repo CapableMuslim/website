@@ -1,6 +1,8 @@
 # The Capable Muslim — Website
 
-Static site for [The Capable Muslim](https://github.com/), built with [Astro](https://astro.build), React, and Tailwind CSS.
+Static site for [The Capable Muslim](https://capablemuslim.tech), built with [Astro](https://astro.build), React, and Tailwind CSS.
+
+Live site: [https://capablemuslim.tech](https://capablemuslim.tech)
 
 ## Project structure
 

@@ -3,7 +3,7 @@ import PlatformIcon from '../community/PlatformIcon.astro';
 import { connectPlatforms } from '../../data/community';
 
 const articleFollowPlatforms = connectPlatforms.filter(
-    (platform) => platform.id !== 'medium' && platform.id !== 'snapchat',
+    (platform) => platform.id !== 'medium',
 );
 ---
 

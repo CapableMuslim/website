@@ -4,8 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://capablemuslim.github.io',
-    base: '/website/',
+    site: 'https://capablemuslim.tech',
     integrations: [react(), tailwind()],
     output: 'static',
     outDir: './Static Pages',

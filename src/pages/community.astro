@@ -121,7 +121,7 @@ const stats = [
                     </p>
                 </header>
 
-                <ul id="social-grid" class="order-4 grid grid-cols-2 gap-3 lg:col-start-2 lg:row-start-2 lg:self-start">
+                <ul id="social-grid" class="order-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:col-start-2 lg:row-start-2 lg:self-start">
                         {
                             socialPlatforms.map((platform) => (
                                 <li>
@@ -129,7 +129,7 @@ const stats = [
                                         href={platform.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="card group flex h-full flex-col items-center p-3 text-center transition-colors hover:border-gold/30 sm:p-4"
+                                        class="card group flex h-full min-h-[6.75rem] flex-col items-center justify-center p-3 text-center transition-colors hover:border-gold/30 sm:min-h-[7.75rem] sm:p-4"
                                         aria-label={`Visit ${platform.name}`}
                                     >
                                         <div
