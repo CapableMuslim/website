@@ -5,7 +5,7 @@ export const siteConfig = {
     defaultDescription:
         'The Capable Muslim — practical guidance for strength, faith, and disciplined living.',
     footerTagline:
-        'You were created for more than comfort and distraction. We walk with Muslims who refuse to settle — faith at the center, discipline in the daily grind, and the quiet courage to become who you were always meant to be.',
+        'The world needs capable Muslims. We explore the ideas, skills, and habits that help individuals live with greater faith, responsibility, competence, and purpose.\n',
     email: 'capablemuslim@gmail.com',
     logo: {
         full: '/logos/Logo-S-NoText.png',
@@ -26,6 +26,6 @@ export const siteConfig = {
     communities: {
         discord: 'https://discord.gg/capablemuslim',
         telegram: 'https://t.me/capablemuslim',
-        reddit: 'https://www.reddit.com/r/capablemuslim',
+        reddit: 'https://www.reddit.com/r/CapableMuslims/',
     },
 } as const;

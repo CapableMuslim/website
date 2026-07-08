@@ -4,7 +4,7 @@ import Search from "../components/Search";
 import Navigation from "../components/Navigation";
 import { siteConfig } from "../data/site";
 import { navLinks, articleCategories, footerCategories, footerCompanyLinks, supportMissionLink } from "../data/landing";
-import { connectPlatforms } from "../data/community";
+import { socialConnectPlatforms, redditConnectPlatform } from "../data/community";
 import PlatformIcon from "../components/community/PlatformIcon.astro";
 import FooterNewsletter from "../components/FooterNewsletter.astro";
 import { withBase } from "../lib/paths";
@@ -235,20 +235,33 @@ const ogImage = new URL(withBase(logo.full), Astro.site);
 						<h4 class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
 							Connect
 						</h4>
-						<div class="mx-auto grid w-fit grid-cols-3 justify-items-center gap-3">
-							{
-								connectPlatforms.map((platform) => (
-									<a
-										href={platform.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="inline-flex text-parchment-400 transition-colors hover:text-gold"
-										aria-label={platform.name}
-									>
-										<PlatformIcon id={platform.id} class="h-5 w-5" />
-									</a>
-								))
-							}
+						<div class="mx-auto w-fit">
+							<div class="grid grid-cols-3 justify-items-center gap-3">
+								{
+									socialConnectPlatforms.map((platform) => (
+										<a
+											href={platform.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="inline-flex text-parchment-400 transition-colors hover:text-gold"
+											aria-label={platform.name}
+										>
+											<PlatformIcon id={platform.id} class="h-5 w-5" />
+										</a>
+									))
+								}
+							</div>
+							<div class="mt-3 flex justify-center">
+								<a
+									href={redditConnectPlatform.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="inline-flex text-parchment-400 transition-colors hover:text-gold"
+									aria-label={redditConnectPlatform.name}
+								>
+									<PlatformIcon id={redditConnectPlatform.id} class="h-5 w-5" />
+								</a>
+							</div>
 						</div>
 
 						<p class="mt-6 text-sm">

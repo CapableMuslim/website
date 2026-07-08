@@ -96,15 +96,26 @@ const stats = [
                                             </p>
                                         </div>
                                     </div>
-                                    <a
-                                        href={platform.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="btn mt-auto pt-4 w-full border border-silver/30 bg-transparent text-center text-parchment transition-colors duration-200 hover:border-silver/50 hover:bg-silver/10 sm:ml-14 sm:w-auto"
-                                        aria-label={`${platform.cta} ${platform.name} community`}
-                                    >
-                                        {platform.cta}
-                                    </a>
+                                    {
+                                        platform.comingSoon ? (
+                                            <span
+                                                class="btn mt-auto pt-4 w-full cursor-default border border-silver/20 bg-transparent text-center text-parchment-400 sm:ml-14 sm:w-auto"
+                                                aria-label={`${platform.name} coming soon`}
+                                            >
+                                                Coming soon
+                                            </span>
+                                        ) : (
+                                            <a
+                                                href={platform.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="btn mt-auto pt-4 w-full border border-silver/30 bg-transparent text-center text-parchment transition-colors duration-200 hover:border-silver/50 hover:bg-silver/10 sm:ml-14 sm:w-auto"
+                                                aria-label={`${platform.cta} ${platform.name} community`}
+                                            >
+                                                {platform.cta}
+                                            </a>
+                                        )
+                                    }
                                 </article>
                             </li>
                         ))

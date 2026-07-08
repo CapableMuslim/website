@@ -14,6 +14,7 @@ export type CommunityPlatform = {
     description: string;
     href: string;
     cta: string;
+    comingSoon?: boolean;
 };
 
 const { social, communities } = siteConfig;
@@ -86,11 +87,19 @@ export const socialPlatforms: SocialPlatform[] = [
 
 export const communityPlatforms: CommunityPlatform[] = [
     {
+        id: 'reddit',
+        name: 'Reddit',
+        description: 'Long-form discussions, questions, and shared experiences.',
+        href: communities.reddit,
+        cta: 'Join',
+    },
+    {
         id: 'discord',
         name: 'Discord',
         description: 'Daily discussions, accountability and community events.',
         href: communities.discord,
         cta: 'Join',
+        comingSoon: true,
     },
     {
         id: 'telegram',
@@ -98,20 +107,33 @@ export const communityPlatforms: CommunityPlatform[] = [
         description: 'Receive new articles, videos, and important announcements.',
         href: communities.telegram,
         cta: 'Join',
-    },
-    {
-        id: 'reddit',
-        name: 'Reddit',
-        description: 'Long-form discussions, questions, and shared experiences.',
-        href: communities.reddit,
-        cta: 'Join',
+        comingSoon: true,
     },
 ];
 
-/** All platforms for footer Connect section (social + community, in display order) */
-export const connectPlatforms = [...socialPlatforms, ...communityPlatforms].map(
-    ({ id, name, href }) => ({ id, name, href }),
-);
+export type ConnectPlatform = {
+    id: string;
+    name: string;
+    href: string;
+};
+
+export const socialConnectPlatforms: ConnectPlatform[] = socialPlatforms.map(({ id, name, href }) => ({
+    id,
+    name,
+    href,
+}));
+
+export const redditConnectPlatform: ConnectPlatform = {
+    id: 'reddit',
+    name: 'Reddit',
+    href: communities.reddit,
+};
+
+/** Social + live community links for contact and other flat lists */
+export const connectPlatforms: ConnectPlatform[] = [
+    ...socialConnectPlatforms,
+    redditConnectPlatform,
+];
 
 /** Placeholder until a live member count is available */
 export const communityMemberCount = '10K+';

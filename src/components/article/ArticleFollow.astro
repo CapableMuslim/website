@@ -1,17 +1,13 @@
 ---
 import PlatformIcon from '../community/PlatformIcon.astro';
-import { connectPlatforms } from '../../data/community';
-
-const articleFollowPlatforms = connectPlatforms.filter(
-    (platform) => platform.id !== 'medium',
-);
+import { socialConnectPlatforms, redditConnectPlatform } from '../../data/community';
 ---
 
 <aside class="article-follow" aria-label="Follow The Capable Muslim">
     <h2 class="article-follow__title">Follow The Capable Muslim</h2>
     <ul class="article-follow__grid">
         {
-            articleFollowPlatforms.map((platform) => (
+            socialConnectPlatforms.map((platform) => (
                 <li>
                     <a
                         href={platform.href}
@@ -26,4 +22,15 @@ const articleFollowPlatforms = connectPlatforms.filter(
             ))
         }
     </ul>
+    <div class="mt-1.5 flex justify-center">
+        <a
+            href={redditConnectPlatform.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="article-follow__link h-9 w-9"
+            aria-label={redditConnectPlatform.name}
+        >
+            <PlatformIcon id={redditConnectPlatform.id} class="h-4 w-4" />
+        </a>
+    </div>
 </aside>
