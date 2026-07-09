@@ -40,3 +40,7 @@ Desktop.ini
 
 # Prompts
 .prompts/
+
+# Cursor and local automation docs (not published site content)
+.cursor/
+docs/
