@@ -35,6 +35,12 @@ const ogImage = new URL(withBase(logo.full), Astro.site);
 		<link rel="icon" type="image/png" href={withBase(logo.icon)} />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonicalURL} />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title={`${siteName} RSS Feed`}
+			href={new URL(withBase('/rss.xml'), Astro.site)}
+		/>
 		<meta property="og:title" content={fullTitle ?? `${title} | ${siteName}`} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
