@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^5.0.0",
     "fuse.js": "^7.1.0",

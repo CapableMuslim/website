@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import BeehiivForm from '../components/BeehiivForm.astro';
+import { withBase } from '../lib/paths';
 
 const benefits = [
     {
@@ -64,6 +65,12 @@ const topics = [
                     </div>
                     <p class="mt-4 text-xs leading-relaxed text-parchment-400">
                         Free. Unsubscribe anytime. We respect your attention.
+                    </p>
+                    <p class="mt-3 text-xs text-parchment-400">
+                        Prefer RSS?
+                        <a href={withBase('/rss.xml')} class="text-gold transition-colors hover:text-gold-300">
+                            Subscribe to the feed
+                        </a>
                     </p>
                 </div>
             </div>

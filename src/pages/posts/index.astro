@@ -5,6 +5,7 @@ import ArticleCard from '../../components/ui/ArticleCard.astro';
 import { pillarsData } from '../../data/pillars';
 import { getCollection } from 'astro:content';
 import { sortPostsByDate, toPostCard } from '../../lib/posts';
+import { withBase } from '../../lib/paths';
 
 const allPosts = await getCollection('posts');
 const posts = sortPostsByDate(allPosts).map(toPostCard);
@@ -30,6 +31,14 @@ const categories = pillarsData
                 <p class="page-lead">
                     Every guide, framework, and insight published on The Capable Muslim. Filter by category
                     to explore a specific domain.
+                </p>
+                <p class="mt-4">
+                    <a
+                        href={withBase('/rss.xml')}
+                        class="text-sm text-parchment-400 transition-colors hover:text-gold"
+                    >
+                        Subscribe via RSS
+                    </a>
                 </p>
             </header>
 

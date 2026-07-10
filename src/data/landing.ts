@@ -147,3 +147,10 @@ export const footerCompanyLinks = [
     { label: 'Contact', href: p('/contact') },
     { label: 'Privacy Policy', href: p('/privacy-policy') },
 ] as const;
+
+export const footerResourceLinks = [
+    { label: 'Articles', href: p('/posts') },
+    { label: 'Search', href: p('/search') },
+    { label: 'Newsletter', href: p('/newsletter') },
+    { label: 'RSS Feed', href: p('/rss.xml') },
+] as const;
